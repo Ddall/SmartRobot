@@ -10,7 +10,7 @@ parameters:
 
 framework:
     #esi:             ~
-    #translator:      { fallbacks: ["%locale%"] }
+    translator:      { fallbacks: ["%locale%"] }
     secret:          "%secret%"
     router:
         resource: "%kernel.root_dir%/config/routing.yml"
@@ -35,6 +35,11 @@ framework:
 twig:
     debug:            "%kernel.debug%"
     strict_variables: "%kernel.debug%"
+    globals:
+        locale:     "%locale%"
+        format_date: "d/m/Y"
+        format_datetime: "d/m/Y H:i:s"
+        format_time: "H:i:s"
 
 # Assetic Configuration
 assetic:
@@ -78,3 +83,13 @@ swiftmailer:
     username:  "%mailer_user%"
     password:  "%mailer_password%"
     spool:     { type: memory }
+
+# FOS UserBundle Configuration
+fos_user:
+    db_driver: orm
+    firewall_name: main
+    user_class: UserBundle\Entity\User
+
+
+avanzu_admin_theme:
+  bower_bin : %bower_bin%
