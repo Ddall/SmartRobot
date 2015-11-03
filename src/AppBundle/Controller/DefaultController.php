@@ -6,8 +6,14 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 
 class DefaultController extends Controller
 {
-    public function indexAction($name)
-    {
-        return $this->render('AppBundle:Default:index.html.twig', array('name' => $name));
+
+    /**
+     * @return \Symfony\Component\HttpFoundation\Response
+     */
+    public function homeAction(){
+        return $this->render('AppBundle:Default:home.html.twig',
+            array()
+        );
     }
+
 }

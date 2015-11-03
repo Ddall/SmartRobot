@@ -25,7 +25,8 @@ class AppKernel extends Kernel
             // Business bundles
             new AppBundle\AppBundle(),
             new UserBundle\UserBundle(), // Extends FOSUserBundle
-
+,
+            new WebBundle\WebBundle(),
         );
 
         if (in_array($this->getEnvironment(), array('dev', 'test'))) {
