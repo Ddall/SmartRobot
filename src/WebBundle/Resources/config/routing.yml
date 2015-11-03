@@ -1,12 +1,20 @@
 # WebBundle:routing.yml
 
+# Profile
 avanzu_admin_profile:
     path: /profile/
 
 avanzu_admin_logout:
     path: /logout
 
+# Tasks
 avanzu_admin_all_tasks:
     path: /tasks/
 avanzu_admin_show_task:
     path: /tasks/{taskid}/
+
+# Notifications
+avanzu_admin_all_notifications:
+    path: /notifications/
+avanzu_admin_show_notification:
+    path: /notifications/{notifyid}/

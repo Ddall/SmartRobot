@@ -61,10 +61,10 @@ class Task implements TaskInterface {
     }
 
     /**
-     * @return string
+     * @return int
      */
     public function getIdentifier(){
-        return $this->id .'_' . $this->title;
+        return $this->getId();
     }
 
     /**

@@ -3,6 +3,7 @@ parameters:
     web_bundle.show_user_listener.class: WebBundle\EventListener\ShowUserEventListener
     web_bundle.task_list_listener.class: WebBundle\EventListener\TaskListListener
     web_bundle.menu_listener.class:      WebBundle\EventListener\MenuItemListListener
+    web_bundle.notification_listener.class:  WebBundle\EventListener\NotificationListListener
 
 services:
 #    web.example:
@@ -29,3 +30,10 @@ services:
               class: %web_bundle.menu_listener.class%
               tags:
                   - { name: kernel.event_listener, event:theme.sidebar_setup_menu, method:onSetupMenu }
+
+    web_bundle.notification_listener:
+        class:  %web_bundle.notification_listener.class%
+        tags:
+            - { name: kernel.event_listener, event: theme.notifications, method: onListNotifications }
+        arguments:
+            entityManager: "@doctrine.orm.entity_manager"
