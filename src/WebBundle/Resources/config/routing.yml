@@ -1,2 +1,12 @@
 # WebBundle:routing.yml
 
+avanzu_admin_profile:
+    path: /profile/
+
+avanzu_admin_logout:
+    path: /logout
+
+avanzu_admin_all_tasks:
+    path: /tasks/
+avanzu_admin_show_task:
+    path: /tasks/{taskid}/

@@ -1,4 +1,25 @@
+# WebBundle:services.yml
+parameters:
+    web_bundle.show_user_listener.class: WebBundle\EventListener\ShowUserEventListener
+    web_bundle.task_list_listener.class: WebBundle\EventListener\TaskListListener
+
 services:
 #    web.example:
 #        class: WebBundle\Example
 #        arguments: [@service_id, "plain_value", %parameter%]
+
+
+    web_bundle.show_user_listener:
+        class: %web_bundle.show_user_listener.class%
+        tags:
+            - { name: kernel.event_listener, event: theme.navbar_user, method: onShowUser }
+        arguments:
+            securityContext: "@security.token_storage"
+
+    web_bundle.task_list_listener:
+        class:  %web_bundle.task_list_listener.class%
+        tags:
+            - { name: kernel.event_listener, event: theme.tasks, method: onListTasks }
+        arguments:
+            entityManager: "@doctrine.orm.entity_manager"
+            securityContext: "@security.token_storage"
