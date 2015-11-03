@@ -1,0 +1,11 @@
+services:
+    dr.tradingpair:
+        class: Dr\MarketBundle\Service\TradingPairService
+        arguments:
+            entityManager: "@doctrine.orm.entity_manager"
+
+    dr.trade:
+        class: Dr\MarketBundle\Service\TradeService
+        arguments:
+            entityManager: "@doctrine.orm.entity_manager"
+

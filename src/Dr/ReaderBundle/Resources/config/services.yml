@@ -1,0 +1,16 @@
+services:
+    dr.kraken:
+        class: Dr\ReaderBundle\Service\KrakenMarketService
+        arguments:
+            entityManager: "@doctrine.orm.entity_manager"
+            tradeService: "@dr.trade"
+            tradingPairService: "@dr.tradingpair"
+            parameters : ['%kraken%']
+
+    dr.helper:
+        class: Dr\ReaderBundle\Service\BaseHelper
+        arguments:
+            entityManager: "@doctrine.orm.entity_manager"
+            tradeService: "@dr.trade"
+            tradingPairService: "@dr.tradingpair"
+            krakenMarketService: "@dr.kraken"
