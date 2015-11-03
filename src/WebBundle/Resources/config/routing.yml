@@ -1,8 +1,12 @@
 # WebBundle:routing.yml
+app_homepage:
+    path:     /
+    defaults: { _controller: WebBundle:Home:index }
+
 
 # Profile
 avanzu_admin_profile:
-    path: /profile/
+    path: /profile
 
 avanzu_admin_logout:
     path: /logout
