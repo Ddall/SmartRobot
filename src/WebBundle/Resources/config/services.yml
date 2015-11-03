@@ -2,6 +2,7 @@
 parameters:
     web_bundle.show_user_listener.class: WebBundle\EventListener\ShowUserEventListener
     web_bundle.task_list_listener.class: WebBundle\EventListener\TaskListListener
+    web_bundle.menu_listener.class:      WebBundle\EventListener\MenuItemListListener
 
 services:
 #    web.example:
@@ -23,3 +24,8 @@ services:
         arguments:
             entityManager: "@doctrine.orm.entity_manager"
             securityContext: "@security.token_storage"
+
+    web_bundle.menu_listener:
+              class: %web_bundle.menu_listener.class%
+              tags:
+                  - { name: kernel.event_listener, event:theme.sidebar_setup_menu, method:onSetupMenu }
