@@ -12,7 +12,6 @@ use Avanzu\AdminThemeBundle\Event\TaskListEvent;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\HttpKernel\Exception\AccessDeniedHttpException;
 use Symfony\Component\Security\Core\Authentication\Token\Storage\TokenStorageInterface;
-use UserBundle\Entity\User;
 
 class TaskListListener{
 
