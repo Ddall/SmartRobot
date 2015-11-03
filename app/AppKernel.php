@@ -25,7 +25,6 @@ class AppKernel extends Kernel
             // Business bundles
             new AppBundle\AppBundle(),
             new UserBundle\UserBundle(), // Extends FOSUserBundle
-,
             new WebBundle\WebBundle(),
         );
 
