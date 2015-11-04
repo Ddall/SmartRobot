@@ -4,6 +4,6 @@ namespace Dr\MarketBundle;
 
 use Symfony\Component\HttpKernel\Bundle\Bundle;
 
-class DdxDrMarketBundle extends Bundle
+class DrMarketBundle extends Bundle
 {
 }
