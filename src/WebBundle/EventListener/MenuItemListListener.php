@@ -32,10 +32,10 @@ class MenuItemListListener{
      * @return mixed
      */
     protected function getMenu(Request $request) {
-        // Build your menu here by constructing a MenuItemModel array
+
         $menuItems = array(
-            $dashboard = new MenuItemModel('dashboard', 'Home', 'app_homepage', array(), 'fa fa-home'),
-            $market =   new MenuItemModel('markets', 'Markets', 'dr_market_list', array(), 'fa fa-line-chart')
+            'dashboard' =>  new MenuItemModel('dashboard', 'Home', 'app_homepage', array(), 'fa fa-home'),
+            'market'    =>  new MenuItemModel('markets', 'Markets', 'dr_market_list', array(), 'fa fa-line-chart')
         );
 
         return $this->activateByRoute($request->get('_route'), $menuItems);
