@@ -61,6 +61,20 @@ class Market
     }
 
 
+    /**
+     * @return bool
+     */
+    public function hasActiveTradingPairs(){
+        foreach($this->getTradingPairs() as $pair){
+            if($pair->isActive()){
+                return true;
+            }
+        }
+
+        return false;
+    }
+
+
 
     /**
      * Constructor

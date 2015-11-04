@@ -1,0 +1,36 @@
+{% extends "::base.html.twig" %}
+{% block title %}Ddx SmartRobot{% endblock %}
+{% block page_title %}Markets{% endblock %}
+{% block page_subtitle %}{% endblock %}
+{% block page_content %}
+
+{% for market in markets %}
+    <div class="col-md-4">
+        <div class="box {% if market.hasActiveTradingPairs %}box-success{% endif %}">
+            <div class="box-header with-border ">
+                <h3 class="box-title">{{ market.name }}</h3>
+                <div class="box-tools pull-right">
+                    {% if not market.hasActiveTradingPairs %}
+                        <span class="label label-warning">Disabled</span>
+                    {% endif %}
+                    <a href="#"><i class="fa fa-cog"></i></a>
+                </div>
+            </div>
+            <div class="box-body">
+                {% if market.tradingPairs is not empty %}
+                <ul class="list-group">
+                    {% for tradingPair in market.tradingPairs %}
+                        <li class="list-group-item">{{ tradingPair.name }}</li>
+                    {% endfor %}
+                </ul>
+
+                {% else %}
+                    <strong>No trading pairs listed for this market</strong>
+                {% endif %}
+
+            </div>
+
+        </div>
+    </div>
+{% endfor %}
+{% endblock %}

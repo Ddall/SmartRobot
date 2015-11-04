@@ -4,6 +4,12 @@ app_homepage:
     defaults: { _controller: WebBundle:Home:index }
 
 
+# Markets
+dr_market_list:
+    path: /markets
+    defaults: { _controller: WebBundle:Market:list}
+
+
 # Profile
 avanzu_admin_profile:
     path: /profile

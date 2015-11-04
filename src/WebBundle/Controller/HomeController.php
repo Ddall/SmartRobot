@@ -19,7 +19,7 @@ class HomeController extends Controller{
      * @return \Symfony\Component\HttpFoundation\Response
      */
     public function indexAction(Request $request){
-        return $this->render('AppBundle:Default:home.html.twig',
+        return $this->render('WebBundle:Default:home.html.twig',
             array()
         );
     }

@@ -5,6 +5,7 @@ namespace Dr\WebBundle\Controller;
  * @author Allan IRDEL
  */
 
+use Dr\ReaderBundle\Service\BaseHelper;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 
 class MarketController extends Controller {
@@ -21,7 +22,7 @@ class MarketController extends Controller {
     }
     
     /**
-     * @return \Dr\ReaderBundle\Service\BaseHelper
+     * @return BaseHelper
      */
     protected function getHelper(){
         return $this->get('dr.helper');
