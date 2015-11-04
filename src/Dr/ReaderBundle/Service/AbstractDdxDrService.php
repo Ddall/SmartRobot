@@ -5,30 +5,32 @@ namespace Dr\ReaderBundle\Service;
  * @author Allan
  */
 
-use Dr\ReaderBundle\Service\AbstractDdxHelper;
+use Composer\Repository\RepositoryInterface;
+use Dr\MarketBundle\Entity\TradeRepository;
+use Dr\MarketBundle\Entity\TradingPairRepository;
 
 abstract class AbstractDdxDrService extends AbstractDdxHelper{
 
     // REPOSITORIES
     /**
-     * @return \Doctrine\ORM\EntityRepository
+     * @return RepositoryInterface
      */
     public function getMarketRepository(){
-        return $this->getManager()->getRepository('DdxDrMarketBundle:Market');
+        return $this->getManager()->getRepository('DrMarketBundle:Market');
     }
-    
+
     /**
-     * @return \Doctrine\ORM\EntityRepository
+     * @return TradeRepository
      */
     public function getTradeRepository(){
-        return $this->getManager()->getRepository('DdxDrMarketBundle:Trade');
+        return $this->getManager()->getRepository('DrMarketBundle:Trade');
     }
     
     /**
-     * @return \Doctrine\ORM\EntityRepository
+     * @return TradingPairRepository
      */
     public function getTradingPairRepository(){
-        return $this->getManager()->getRepository('DdxDrMarketBundle:TradingPair');
+        return $this->getManager()->getRepository('DrMarketBundle:TradingPair');
     }
     
 }

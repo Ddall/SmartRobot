@@ -6,6 +6,7 @@ namespace Dr\ReaderBundle\Service;
  * @author Allan
  */
 
+use Doctrine\ORM\EntityManagerInterface;
 use Dr\MarketBundle\Service\TradeService;
 use Dr\MarketBundle\Service\TradingPairService;
 use Dr\ReaderBundle\Service\KrakenMarketService;
@@ -25,9 +26,10 @@ abstract class AbstractDdxHelper{
         $this->entityManager = $entityManager;
         return $this;
     }
-    
+
+
     /**
-     * @return \Doctrine\ORM\EntityManagerInterface
+     * @return EntityManagerInterface
      */
     public function getEntityManager(){
         return $this->entityManager;
