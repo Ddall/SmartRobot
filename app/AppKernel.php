@@ -26,6 +26,11 @@ class AppKernel extends Kernel
             new AppBundle\AppBundle(),
             new UserBundle\UserBundle(), // Extends FOSUserBundle
             new WebBundle\WebBundle(),
+
+            // - DumbRobot
+            new Dr\MarketBundle\DdxDrMarketBundle(),
+            new Dr\ReaderBundle\DdxDrReaderBundle(),
+            new Dr\StrategyBundle\DdxDrStrategyBundle(),
         );
 
         if (in_array($this->getEnvironment(), array('dev', 'test'))) {
