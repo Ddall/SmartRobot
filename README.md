@@ -1,6 +1,5 @@
 # DdxSmartRobot
-Rework of DdxDumbRobot
-Don't get your hopes up :-)
+Rework of DdxDumbRobot, don't get your hopes up just yet :-)
 
 [![SensioLabsInsight](https://insight.sensiolabs.com/projects/62593c62-56b0-492d-b375-bbb4aa20cb1e/big.png)](https://insight.sensiolabs.com/projects/62593c62-56b0-492d-b375-bbb4aa20cb1e)
 
