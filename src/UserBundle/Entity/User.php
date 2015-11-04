@@ -23,7 +23,6 @@ class User extends BaseUser implements ThemeUser {
      */
     protected $id;
 
-
     /**
      * Get id
      *
@@ -47,7 +46,6 @@ class User extends BaseUser implements ThemeUser {
      * @return string
      */
     public function getAvatar(){
-        // TODO: Implement getAvatar() method.
         return '';
     }
 
@@ -55,7 +53,6 @@ class User extends BaseUser implements ThemeUser {
      * @return string
      */
     public function getName(){
-        // TODO: Implement getName() method.
         return $this->username;
     }
 
@@ -63,16 +60,13 @@ class User extends BaseUser implements ThemeUser {
      * @return \DateTime
      */
     public function getMemberSince(){
-        // TODO: Implement getMemberSince() method.
         return new \DateTime();
     }
 
     /**
      * @return bool
      */
-    public function isOnline()
-    {
-        // TODO: Implement isOnline() method.
+    public function isOnline(){
         return true;
     }
 
