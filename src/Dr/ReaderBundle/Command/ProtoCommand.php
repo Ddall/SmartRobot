@@ -27,18 +27,20 @@ class ProtoCommand extends ContainerAwareCommand {
      * @param OutputInterface $output
      */
     public function execute(InputInterface $input, OutputInterface $output) {
-        /**
-         * @var \Dr\ReaderBundle\Service\BaseHelper
-         */
-        $base = $this->getContainer()->get('dr.helper');
-        $kraken = $base->getMarketRepository()->find(1); // @WARN NEED TO GENERALIZE THIS
-        
-        $data = $base->getTradeService()->computeTrades($kraken, $kraken->getActiveTradingPairs()->first());
-        
-        
-        $output->writeln(print_r($data, true));
-        
-        
+//        /**
+//         * @var \Dr\ReaderBundle\Service\BaseHelper
+//         */
+//        $base = $this->getContainer()->get('dr.helper');
+//        $kraken = $base->getMarketRepository()->find(1); // @WARN NEED TO GENERALIZE THIS
+//
+//        $data = $base->getTradeService()->computeTrades($kraken, $kraken->getActiveTradingPairs()->first());
+//
+//
+//        $output->writeln(print_r($data, true));
+
+
+        $base = $this->getContainer()->get('dr.refresher');
+        $base->refresh();
         
     }
 }

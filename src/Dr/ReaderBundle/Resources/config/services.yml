@@ -1,4 +1,12 @@
 services:
+    dr.refresher:
+        class: Dr\ReaderBundle\Service\RefresherService
+        arguments:
+            markets:
+              - "@dr.kraken"
+
+
+
     dr.kraken:
         class: Dr\ReaderBundle\Service\KrakenMarketService
         arguments:

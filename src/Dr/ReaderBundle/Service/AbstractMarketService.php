@@ -22,7 +22,15 @@ abstract class AbstractMarketService extends AbstractDdxDrService{
      * @throws \Exception
      */
     public function updateAllTradeHistory($dryrun = false){
-        throw new \ Exception('You must overload AbstractMarket::setApi()');
+        throw new \ Exception('You must implement AbstractMarket::updateAllTradeHistory()');
+    }
+
+    /**
+     * @param bool $dryrun
+     * @throws \Exception
+     */
+    public function updateAllOrderBook($dryrun = false){
+        throw new \ Exception('You must implement AbstractMarket::updateOrderBook()');
     }
     
 }
