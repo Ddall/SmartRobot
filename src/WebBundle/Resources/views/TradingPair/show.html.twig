@@ -1,0 +1,72 @@
+{% extends "::base.html.twig" %}
+{% block title %}Ddx SmartRobot{% endblock %}
+{% block page_title %}
+    Trading pair <i>{{ tradingPair.name }}</i> on <a href="{{ path('dr_market_show', {'market_id': tradingPair.market.id}) }}"><i>{{ tradingPair.market.name }}</i></a>
+    {% if tradingPair.isActive %}
+        <span class="label label-success">Active</span>
+    {% else %}
+        <span class="label label-default">Inactive</span>
+    {% endif %}
+{% endblock %}
+{% block page_subtitle %}{% endblock %}
+{% block page_content %}
+    <div class="row">
+        <section id="settings">
+            <div class="col-md-6 col-sm-6 col-xs-12">
+                <div class="box box-default {% if tradingPair.isActive %}collapsed-box{% endif %}">
+                    <div class="box-header with-border">
+                        <h4 class="box-title">Settings</h4>
+                        <div class="box-tools pull-right">
+                            <button class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-plus"></i></button>
+                        </div>
+                    </div>
+                    <div class="box-body">
+                        <div class="col-3-md">
+                            {{ form(formTradingPair) }}
+                        </div>
+                    </div><!-- /.box-body -->
+                </div><!-- /.box -->
+            </div>
+        </section>
+    </div>
+
+
+    {% if tradingPair.isActive %}
+    <div class="row">
+        <section id="trades">
+            <h3>History</h3>
+            <p> History placeholder</p>
+        </section>
+    </div>
+
+    <div class="row">
+        <section id="orberbook">
+            <h3>Orderbook</h3>
+            <p>Orderbook placeholder</p>
+        </section>
+    </div>
+
+    <div class="row">
+        <section id="statistics">
+            <h3>Statistiques</h3>
+        </section>
+    </div>
+
+    {% else %}
+    <div class="row">
+        <section id="info">
+            <div class="col-md-6 col-sm-6 col-xs-12">
+                <div class="box box-solid box-warning">
+                    <div class="box-header">
+                        <h4>This trading pair is currently disabled</h4>
+                    </div>
+                    <div class="box-body">
+                        <p>Trade history and orderbook are unavailable while the trading pair is inactive.</p>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+    </div>
+    {% endif %}
+{% endblock %}

@@ -333,7 +333,7 @@ class KrakenMarketService extends AbstractMarketService{
      */
     protected function getMarketEntity(){
         if($this->_krakenEntity === null){
-            $this->_krakenEntity =  $this->getManager()->getRepository('DdxDrMarketBundle:Market')->findOneByName('Kraken');
+            $this->_krakenEntity =  $this->getManager()->getRepository('DrMarketBundle:Market')->findOneByName('Kraken');
             if(!$this->_krakenEntity){
                 throw new Exception('KrakenMarketService: Market entity was not found');
             }

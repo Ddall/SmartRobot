@@ -9,12 +9,13 @@
 namespace WebBundle\Controller;
 
 
+use Dr\MarketBundle\Entity\Market;
 use Dr\ReaderBundle\Service\BaseHelper;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 
 class MarketController extends Controller{
-
 
     /**
      * @param Request $request
@@ -31,13 +32,21 @@ class MarketController extends Controller{
 
     /**
      * @param Request $request
+     * @param integer $market_id
      * @return \Symfony\Component\HttpFoundation\Response
      */
-    public function editAction(Request $request){
-        
+    public function showAction(Request $request, $market_id){
 
-        return $this->render('WebBundle:Market:edit.twig.html', array(
+        $market = $this->getHelper()->getMarketRepository()->findOneBy(array(
+            'id' => $market_id
+        ));
 
+        if(false === $market instanceof  Market){
+            throw new NotFoundHttpException('invalid market id');
+        }
+
+        return $this->render('WebBundle:Market:show.html.twig', array(
+            'market' => $market,
         ));
     }
 

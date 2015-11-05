@@ -33,7 +33,7 @@ class TradeRepository extends EntityRepository
                 ->getQuery()->getOneOrNullResult()
                 ;
     }
-    
+
     
     /**
      * weighted average trading price

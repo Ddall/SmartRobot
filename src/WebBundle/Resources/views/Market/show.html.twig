@@ -1,0 +1,55 @@
+{% extends "::base.html.twig" %}
+{% block title %}Ddx SmartRobot{% endblock %}
+{% block page_title %}{{ market.name }}{% endblock %}
+{% block page_subtitle %}Current status{% endblock %}
+{% block page_content %}
+    <section id="activetradingpairs">
+        <h2>Active trading pairs</h2>
+        <p>These trading pairs are marked as enabled and should be updated automatically</p>
+        <div class="row">
+            {% for tradingPair in market.tradingPairs %}
+                {% if tradingPair.isActive %}
+                    <div class="col-md-3 col-sm-6 col-xs-12">
+                        <div class="box box-success">
+                            <div class="box-header">
+                                <h3 class="box-title">{{ tradingPair.name }}</h3>
+                                <div class="box-tools pull-right">
+                                    <span class="label label-success">Active</span>
+                                    <a href="{{ path('dr_tradingpair_show', {'tradingPair_id': tradingPair.id}) }}" data-toggle="tooltip" title="See"><i class="fa fa-area-chart"></i></a>
+                                </div>
+                            </div>
+                            <div class="box-body">
+
+                            </div>
+                        </div>
+                    </div>
+                {% endif %}
+            {% endfor %}
+        </div>
+    </section>
+
+    <section id="tradingpairs">
+        <h2>Available trading pairs</h2>
+        <div class="row">
+            {% for tradingPair in market.tradingPairs %}
+                {% if tradingPair.isActive != true %}
+                    <div class="col-md-3 col-sm-6 col-xs-12">
+                        <div class="box ">
+                            <div class="box-header">
+                                <h3 class="box-title">{{ tradingPair.name }}</h3>
+                                <div class="box-tools pull-right">
+                                    <span class="label label-default">Inactive</span>
+                                    <a href="{{ path('dr_tradingpair_show', {'tradingPair_id': tradingPair.id}) }}" data-toggle="tooltip" title="Edit"><i class="fa fa-cog"></i></a>
+                                </div>
+                            </div>
+
+                            <div class="box-body">
+                            </div>
+                        </div>
+                    </div>
+                {% endif %}
+            {% endfor %}
+        </div>
+    </section>
+
+{% endblock %}

@@ -8,7 +8,7 @@
     <div class="col-md-4">
         <div class="box {% if market.hasActiveTradingPairs %}box-success{% endif %}">
             <div class="box-header with-border ">
-                <h3 class="box-title">{{ market.name }}</h3>
+                <a href="{{ path('dr_market_show', {'market_id': market.id}) }}"><h3 class="box-title">{{ market.name }}</h3></a>
                 <div class="box-tools pull-right">
                     {% if not market.hasActiveTradingPairs %}
                         <span class="label label-warning">Disabled</span>
@@ -17,15 +17,17 @@
                 </div>
             </div>
             <div class="box-body">
-                {% if market.tradingPairs is not empty %}
-                <ul class="list-group">
+                <p>Active trading pairs</p>
+                {% if market.activeTradingPairs is not empty %}
+                <div class="list-group">
                     {% for tradingPair in market.tradingPairs %}
-                        <li class="list-group-item">{{ tradingPair.name }}</li>
+                        {% if tradingPair.isActive %}
+                            <a href="{{ path('dr_tradingpair_show', {'tradingPair_id': tradingPair.id}) }}" class="list-group-item">{{ tradingPair.name }}</a>
+                        {% endif %}
                     {% endfor %}
-                </ul>
-
+                </div>
                 {% else %}
-                    <strong>No trading pairs listed for this market</strong>
+                    <strong>No active trading pairs</strong> <a href="#">Enable trading pairs</a>
                 {% endif %}
 
             </div>

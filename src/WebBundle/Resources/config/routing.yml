@@ -9,6 +9,17 @@ dr_market_list:
     path: /markets
     defaults: { _controller: WebBundle:Market:list}
 
+dr_market_show:
+    path: /market/{market_id}
+    defaults: { _controller: WebBundle:Market:show}
+    requirements:
+      market_id: \d+
+
+dr_tradingpair_show:
+    path: /pair/{tradingPair_id}
+    defaults: { _controller: WebBundle:TradingPair:show}
+    requirements:
+      tradingPair_id: \d+
 
 # Profile
 avanzu_admin_profile:

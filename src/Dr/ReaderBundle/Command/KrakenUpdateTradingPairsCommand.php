@@ -35,7 +35,7 @@ class KrakenUpdateTradingPairsCommand extends ContainerAwareCommand{
         $pairs = $krakenService->updateTradingPairs( $input->getOption('dryrun') );
         $output->writeln('DONE'.PHP_EOL);
         
-        $output->writeln('Available trading pairs:');
+        $output->writeln('New trading pairs:');
         foreach($pairs as $pair){
             $output->writeln(' - ' . $pair->getName());
         }

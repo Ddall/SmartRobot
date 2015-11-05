@@ -30,7 +30,7 @@ class ShowTradesCommand extends ContainerAwareCommand{
     public function execute(InputInterface $input, OutputInterface $output) {
         $krakenService  = $this->getContainer()->get('dr.trade');
         
-        $market = $this->getContainer()->get('doctrine')->getManager()->getRepository('DdxDrMarketBundle:Market')->findOneByName('Kraken');
+        $market = $this->getContainer()->get('doctrine')->getManager()->getRepository('DrMarketBundle:Market')->findOneByName('Kraken');
         if(!$market){
             throw new Exception('MARKET NOT FOUND');
         }
