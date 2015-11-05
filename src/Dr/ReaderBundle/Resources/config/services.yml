@@ -5,8 +5,6 @@ services:
             markets:
               - "@dr.kraken"
 
-
-
     dr.kraken:
         class: Dr\ReaderBundle\Service\KrakenMarketService
         arguments:

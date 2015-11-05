@@ -28,12 +28,13 @@ class RefresherService{
     }
 
     /**
+     * Checks and registers arrayMarket
      * @param array $arrayMarkets
      * @throws \Exception
      */
     private function checkMarketsArray(array $arrayMarkets){
         foreach($arrayMarkets as $market){
-            if(!is_object($market) || false === $market instanceof AbstractMarketService ){
+            if(!is_object($market) || false === $market instanceof MarketServiceInterface ){
                 throw new \Exception('expecting AbstractMarketService, got ' . gettype($market));
             }else{
                 $this->markets[] = $market;
@@ -42,17 +43,29 @@ class RefresherService{
     }
 
 
-    public function refresh(){
+    /**
+     * @param bool|false $dryrun
+     * @return array
+     */
+    public function refresh($dryrun = false){
+        $output = array();
+
         foreach($this->markets as $market){
-            $market->updateAllTradeHistory(false);
-            $market->updateAllOrderBook(false);
+
+            $output[$market->getName()]['tradehistory'] = $market->updateAllTradeHistory($dryrun);
+            $output[$market->getName()]['orderbook'] = $market->updateAllOrderBook($dryrun);
         }
+
+        return $output;
     }
 
     /**
      * Alias of refresh()
+     * @param bool|false $dryrun
+     * @return array
      */
-    public function run(){
-        return $this->refresh();
+    public function run($dryrun = false){
+        return $this->refresh($dryrun);
     }
+
 }

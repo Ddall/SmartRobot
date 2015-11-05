@@ -10,14 +10,13 @@ use Dr\MarketBundle\Service\TradeService;
 use Dr\MarketBundle\Service\TradingPairService;
 
 use Dr\ReaderBundle\Market\KrakenApiWrapper;
-use Dr\ReaderBundle\Service\AbstractMarketService;
 use Dr\MarketBundle\Entity\TradingPair;
 use Dr\MarketBundle\Entity\Trade;
 use Dr\MarketBundle\Entity\Position;
 use Dr\MarketBundle\Entity\OrderBook;
 use \Exception as Exception;
 
-class KrakenMarketService extends AbstractMarketService{
+class KrakenMarketService extends AbstractDdxDrService implements MarketServiceInterface {
 
     /**
      * @var KrakenApiWrapper
@@ -32,6 +31,13 @@ class KrakenMarketService extends AbstractMarketService{
 
 
     // -- EXPOSED METHODS -- EXPOSED METHODS -- EXPOSED METHODS -- EXPOSED METHODS
+
+    /**
+     * @return string
+     */
+    public function getName(){
+        return 'kraken';
+    }
     
     /**
      * Call this to update the trade history
