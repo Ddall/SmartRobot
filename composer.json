@@ -1,5 +1,5 @@
 {
-    "name": "Ddall/SmartRobot",
+    "name": "ddall/smart-robot",
     "license": "MIT",
     "type": "project",
     "description": "Second attempt at a slightly less dumb algorithmic trading bot",
