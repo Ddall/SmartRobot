@@ -26,13 +26,16 @@ class LoadAssetsData implements FixtureInterface{
             'Pound' => array('Pound', '£'),
             'Yen' => array('JPY', '¥'),
         );
-        
+
         $entities = array();
-        foreach($data as $name => $abbr){
-            $entities[$abbr] = new Asset($name, $abbr);
-            $manager->persist($entities[$abbr]);
+        foreach($data as $name => $line){
+            $entities[] = new Asset($name, $line[0], $line[1] );
         }
-                
+
+        foreach($entities as $entity){
+            $manager->persist($entity);
+        }
+
         $manager->flush();
     }
 }
