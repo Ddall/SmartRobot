@@ -43,16 +43,27 @@ class Asset
     private $symbol;
 
     /**
+     * @var integer
+     *
+     * @ORM\Column(name="type", type="integer", nullable = true)
+     */
+    private $type;
+
+    const TYPE_UNDEFINED = 0;
+    const TYPE_FIAT = 1;
+    const TYPE_VIRTUAL = 2;
+
+    /**
      * @param string $name
      * @param string $abbr
      * @param string $symbol
      * @return \Dr\MarketBundle\Entity\Asset
      */
-    public function __construct($name = null, $abbr = null, $symbol = null) {
+    public function __construct($name = null, $abbr = null, $symbol = null, $type = 0) {
         $this->setName($name);
         $this->setAbbr($abbr);
         $this->setSymbol($symbol);
-        
+
         return $this;
     }
 
@@ -144,5 +155,33 @@ class Asset
     public function getSymbol()
     {
         return $this->symbol;
+    }
+
+    /**
+     * @return int
+     */
+    public function getType(){
+        return $this->type;
+    }
+
+
+    /**
+     * @param int $type
+     * @return $this
+     * @throws \Exception
+     */
+    public function setType($type){
+
+        if($type === null ){
+            $this->type = self::TYPE_UNDEFINED;
+
+        }elseif($type == self::TYPE_UNDEFINED || $type == self::TYPE_FIAT || $type == self::TYPE_VIRTUAL){
+            $this->type = $type;
+
+        }else{
+            throw new \Exception('Asset::setType(): bad parameter');
+        }
+
+        return $this;
     }
 }

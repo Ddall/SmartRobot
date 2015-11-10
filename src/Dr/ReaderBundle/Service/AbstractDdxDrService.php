@@ -6,6 +6,7 @@ namespace Dr\ReaderBundle\Service;
  */
 
 use Composer\Repository\RepositoryInterface;
+use Doctrine\Common\Persistence\ObjectRepository;
 use Dr\MarketBundle\Entity\TradeRepository;
 use Dr\MarketBundle\Entity\TradingPairRepository;
 
@@ -31,6 +32,14 @@ abstract class AbstractDdxDrService extends AbstractDdxHelper{
      */
     public function getTradingPairRepository(){
         return $this->getManager()->getRepository('DrMarketBundle:TradingPair');
+    }
+
+
+    /**
+     * @return ObjectRepository
+     */
+    public function getAssetRepository(){
+        return $this->getManager()->getRepository('DrMarketBundle:Asset');
     }
     
 }

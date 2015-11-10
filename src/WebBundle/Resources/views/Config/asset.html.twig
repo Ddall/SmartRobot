@@ -1,0 +1,50 @@
+{% extends "::base.html.twig" %}
+{% block title %}Ddx SmartRobot{% endblock %}
+
+{% block page_title %}Assets{% endblock %}
+
+{% block page_subtitle %}Add and edit assets{% endblock %}
+{% block page_content %}
+
+{% if assets is not empty %}
+    <section id="assets">
+    <div class="row">
+    {% for asset in assets %}
+        <div class="col-md-3 col-sm-6 col-xs-12">
+            <div class="box">
+                <div class="box-header">
+                    <div class="box-title">
+                        {{ asset.entity.name }} ({{ asset.entity.abbr }})
+                    </div>
+                </div>
+                <div class="box-body">
+                    {{ form( asset.formView ) }}
+                </div>
+            </div>
+        </div>
+
+    {% endfor %}
+    </div>
+    </section>
+{% else %}
+    <div class="row">
+        <section id="info">
+            <div class="col-md-6 col-sm-6 col-xs-12">
+                <div class="box box-solid box-warning">
+                    <div class="box-header">
+                        <h4>No asset is present</h4>
+                    </div>
+                    <div class="box-body">
+                        <p>Try to create new assets using this page.</p>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+    </div>
+{% endif %}
+
+
+
+
+{% endblock %}

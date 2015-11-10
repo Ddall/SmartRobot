@@ -21,6 +21,13 @@ dr_tradingpair_show:
     requirements:
       tradingPair_id: \d+
 
+# Config
+
+  #assets
+dr_config_asset:
+    path: /config/asset
+    defaults: { _controller: WebBundle:Config:asset}
+
 # Profile
 avanzu_admin_profile:
     path: /profile

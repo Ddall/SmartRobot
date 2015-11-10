@@ -35,7 +35,8 @@ class MenuItemListListener{
 
         $menuItems = array(
             'dashboard' =>  new MenuItemModel('dashboard', 'Home', 'app_homepage', array(), 'fa fa-home'),
-            'market'    =>  new MenuItemModel('markets', 'Markets', 'dr_market_list', array(), 'fa fa-line-chart')
+            'market'    =>  new MenuItemModel('markets', 'Markets', 'dr_market_list', array(), 'fa fa-line-chart'),
+            'config_assets'    =>  new MenuItemModel('config_assets', 'Configure Assets', 'dr_config_asset', array(), 'fa fa-line-chart'),
         );
 
         return $this->activateByRoute($request->get('_route'), $menuItems);
