@@ -28,6 +28,16 @@ dr_config_asset:
     path: /config/asset
     defaults: { _controller: WebBundle:Config:asset}
 
+dr_config_asset_new:
+    path: /config/new
+    defaults: { _controller: WebBundle:Config:newAsset}
+
+dr_config_asset_edit:
+    path: /config/asset/edit/{asset_id}
+    defaults: { _controller: WebBundle:Config:editAsset}
+    requirements:
+      asset_id: \d+
+
 # Profile
 avanzu_admin_profile:
     path: /profile

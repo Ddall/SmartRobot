@@ -4,7 +4,7 @@ namespace Dr\MarketBundle\Form;
 
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
-use Symfony\Component\OptionsResolver\OptionsResolverInterface;
+use Symfony\Component\OptionsResolver\OptionsResolver;
 
 class TradingPairType extends AbstractType
 {
@@ -25,6 +25,14 @@ class TradingPairType extends AbstractType
                     0 => 'Inactive', 1 => 'Active'
                 ),
             ))
+            ->add('assetFrom', 'entity', array(
+                'label' => 'Asset From',
+                'class' => 'DrMarketBundle:Asset',
+            ))
+            ->add('assetTo', 'entity', array(
+                'label' => 'Asset to',
+                'class' => 'DrMarketBundle:Asset',
+            ))
             ->add('submit', 'submit', array(
                 'attr' => array(
                     'class' => 'save'
@@ -35,9 +43,9 @@ class TradingPairType extends AbstractType
     }
 
     /**
-     * @param OptionsResolverInterface $resolver
+     * @param OptionsResolver $resolver
      */
-    public function setDefaultOptions(OptionsResolverInterface $resolver)
+    public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults(array(
             'data_class' => 'Dr\MarketBundle\Entity\TradingPair'

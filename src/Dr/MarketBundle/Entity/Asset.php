@@ -38,7 +38,7 @@ class Asset
     /**
      * @var string
      *
-     * @ORM\Column(name="symbol", type="string", length=3)
+     * @ORM\Column(name="symbol", type="string", length=3, nullable=true)
      */
     private $symbol;
 
@@ -71,11 +71,24 @@ class Asset
      * @return string
      */
     public function __toString() {
-        if($this->getSymbol()){
-            return $this->getSymbol();
+
+        return $this->getName() . ' '. ' (' . $this->getTypeString() .')' ;
+    }
+
+    public function getTypeString(){
+        switch($this->type){
+            case self::TYPE_VIRTUAL:
+                return 'Virtual';
+                break;
+
+            case self::TYPE_FIAT:
+                return 'Fiat';
+                break;
+
+            case self::TYPE_UNDEFINED:
+            default:
+                return 'Undefined';
         }
-        
-        return $this->getAbbr();
     }
     
     /**
