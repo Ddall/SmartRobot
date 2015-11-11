@@ -22,6 +22,7 @@ class AppKernel extends Kernel
             // External bundles
             new FOS\UserBundle\FOSUserBundle(),
             new Avanzu\AdminThemeBundle\AvanzuAdminThemeBundle(),
+            new Ob\HighchartsBundle\ObHighchartsBundle(),
 
             // Business bundles
             new AppBundle\AppBundle(),
