@@ -59,10 +59,11 @@ class Asset
      * @param string $symbol
      * @return \Dr\MarketBundle\Entity\Asset
      */
-    public function __construct($name = null, $abbr = null, $symbol = null, $type = 0) {
+    public function __construct($name = null, $abbr = null, $symbol = null, $type = self::TYPE_UNDEFINED) {
         $this->setName($name);
         $this->setAbbr($abbr);
         $this->setSymbol($symbol);
+        $this->setType($type);
 
         return $this;
     }
