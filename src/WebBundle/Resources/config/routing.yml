@@ -38,6 +38,15 @@ dr_config_asset_edit:
     requirements:
       asset_id: \d+
 
+
+# Charts
+
+dr_chart_ohlc:
+    path: /chart/ohlc/{tradingPair_id}
+    defaults: { _controller: WebBundle:Chart:tradeHistoryOHLC}
+    requirements:
+      tradingPair_id: \d+
+
 # Profile
 avanzu_admin_profile:
     path: /profile

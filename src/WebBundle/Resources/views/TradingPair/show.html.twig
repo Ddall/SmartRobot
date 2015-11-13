@@ -1,5 +1,16 @@
 {% extends "::base.html.twig" %}
+
 {% block title %}Ddx SmartRobot{% endblock %}
+
+{% block javascripts %}
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js" type="text/javascript"></script>
+    <script src="//code.highcharts.com/4.1.8/highcharts.js"></script>
+    <script src="//code.highcharts.com/4.1.8/modules/exporting.js"></script>
+    <script type="text/javascript">
+        {{ chart(chart) }}
+    </script>
+{% endblock %}
+
 {% block page_title %}
     Trading pair <i>{{ tradingPair.name }}</i> on <a href="{{ path('dr_market_show', {'market_id': tradingPair.market.id}) }}"><i>{{ tradingPair.market.name }}</i></a>
     {% if tradingPair.isActive %}
@@ -9,6 +20,7 @@
     {% endif %}
 {% endblock %}
 {% block page_subtitle %}{% endblock %}
+
 {% block page_content %}
     <div class="row">
         <section id="settings">
@@ -34,7 +46,7 @@
     <div class="row">
         <section id="trades">
             <h3>History</h3>
-            <p> History placeholder</p>
+            <div id="tradehistory"></div>
         </section>
     </div>
 
@@ -63,7 +75,6 @@
                         <p>Trade history and orderbook are unavailable while the trading pair is inactive.</p>
                     </div>
                 </div>
-
             </div>
         </section>
     </div>
