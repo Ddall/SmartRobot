@@ -64,7 +64,7 @@ class ChartController extends Controller{
      * @param array $data
      * @return array
      */
-    static function normalizeData(array $data){
+    private function normalizeData(array $data){
         $output = array();
 
         foreach($data as $line){
@@ -82,7 +82,7 @@ class ChartController extends Controller{
      * @param array $ohlc
      * @return array
      */
-    static function normalizeOHLC(array $ohlc){
+    private function normalizeOHLC(array $ohlc){
         $data = array();
         foreach($ohlc as $key => $line){
             $data[] = array(
