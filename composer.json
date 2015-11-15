@@ -21,7 +21,7 @@
         "friendsofsymfony/user-bundle": "~1.3",
         "avanzu/admin-theme-bundle": "~1.3",
         "payward/kraken-api-client": "dev-master#00feabae940414ec293580cb8aa4ef3a22c502b4",
-        "ob/highcharts-bundle": "dev-master"
+        "ob/highcharts-bundle": "~1.3"
     },
     "require-dev": {
         "sensio/generator-bundle": "~2.3"
