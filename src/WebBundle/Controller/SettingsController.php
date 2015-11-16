@@ -15,7 +15,7 @@ use Dr\ReaderBundle\Service\BaseHelper;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 
-class ConfigController extends Controller{
+class SettingsController extends Controller{
 
     /**
      * @param Request $request
@@ -35,7 +35,7 @@ class ConfigController extends Controller{
             $assets[$key]['formView'] = $assets[$key]['form']->createView();
         }
 
-        return $this->render('WebBundle:Config:asset.html.twig', array(
+        return $this->render('WebBundle:Settings:asset.html.twig', array(
             'assets' => $assets,
         ));
     }
@@ -58,7 +58,7 @@ class ConfigController extends Controller{
         }
 
         $form = $this->createForm( new AssetType(), $asset, array(
-            'action' => $this->generateUrl('dr_config_asset_edit', array(
+            'action' => $this->generateUrl('dr_settings_asset_edit', array(
                 'asset_id' => $asset->getId(),
             )),
         ));
@@ -71,7 +71,7 @@ class ConfigController extends Controller{
             $em->flush();
         }
 
-        return $this->redirectToRoute('dr_config_asset');
+        return $this->redirectToRoute('dr_settings_asset');
     }
 
 
@@ -90,15 +90,21 @@ class ConfigController extends Controller{
             $em->persist($asset);
             $em->flush();
 
-            return $this->redirectToRoute('dr_config_asset');
+            return $this->redirectToRoute('dr_settings_asset');
         }
 
-        return $this->render('WebBundle:Config:new_asset.html.twig', array(
+        return $this->render('WebBundle:Settings:new_asset.html.twig', array(
             'form' => $form->createView(),
         ));
 
     }
 
+    /**
+     * @param Request $request
+     * @param $asset_id
+     * @return \Symfony\Component\HttpFoundation\RedirectResponse
+     * @throws \Exception
+     */
     public function deleteAssetAction(Request $request, $asset_id){
         $asset = $this->getHelper()->getAssetRepository()->findOneBy(array(
            'id' => $asset_id,
@@ -112,7 +118,20 @@ class ConfigController extends Controller{
         $em->detach($asset);
         $em->flush();
 
-        return $this->redirectToRoute('dr_config_asset');
+        return $this->redirectToRoute('dr_settings_asset');
+    }
+
+
+    //-- Refresher
+
+    /**
+     * @param Request $request
+     * @return \Symfony\Component\HttpFoundation\Response
+     */
+    public function refresherAction(Request $request){
+        return $this->render('WebBundle:Settings:refresher.html.twig', array(
+
+        ));
     }
 
     /**

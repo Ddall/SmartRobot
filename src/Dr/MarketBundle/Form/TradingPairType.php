@@ -25,12 +25,19 @@ class TradingPairType extends AbstractType
                     0 => 'Inactive', 1 => 'Active'
                 ),
             ))
+            ->add('refreshInterval', 'integer', array(
+                'label' => 'Refresh interval (in seconds)',
+                'required' => true,
+                'attr' => array(
+                    'placeholder' => 'value in seconds',
+                )
+            ))
             ->add('assetFrom', 'entity', array(
-                'label' => 'Asset From',
+                'label' => 'Price listed in',
                 'class' => 'DrMarketBundle:Asset',
             ))
             ->add('assetTo', 'entity', array(
-                'label' => 'Asset to',
+                'label' => 'Asset traded (what is for sale?)',
                 'class' => 'DrMarketBundle:Asset',
             ))
             ->add('submit', 'submit', array(

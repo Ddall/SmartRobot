@@ -15,7 +15,7 @@ use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Console\Output\OutputInterface;
 
-class MarketsRefreshCommand extends ContainerAwareCommand{
+class MarketsRefresherCommand extends ContainerAwareCommand{
 
     protected function configure() {
         $this

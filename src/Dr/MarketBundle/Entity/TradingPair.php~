@@ -120,14 +120,6 @@ class TradingPair
         return $this;
     }
 
-    /**
-     * @return $this
-     */
-    public function setOrderBookRefreshed(){
-        $this->orderBookLastRefresh = new \DateTime('now');
-
-        return $this;
-    }
 
     /**
      * @return bool|\DateInterval|null
@@ -140,41 +132,12 @@ class TradingPair
         }
     }
 
-    /**
-     * @return bool|\DateInterval|null
-     */
-    public function getOrderBookLastRefreshInterval(){
-        if($this->orderBookLastRefresh instanceof \DateTime){
-            return $this->orderBookLastRefresh->diff(new \DateTime('now'));
-        }else{
-            return null;
-        }
-    }
-
 
     /**
      * @return bool|null
      */
     public function isStale(){
         $lastRefreshInterval = $this->getLastRefreshInterval();
-        if($lastRefreshInterval instanceof \DateInterval){
-
-            if($lastRefreshInterval->s >= $this->getRefreshInterval()){
-                return true;
-            }else{
-                return false;
-            }
-
-        }
-
-        return null;
-    }
-
-    /**
-     * @return bool|null
-     */
-    public function isOrderBookStale(){
-        $lastRefreshInterval = $this->getOrderBookLastRefreshInterval();
         if($lastRefreshInterval instanceof \DateInterval){
 
             if($lastRefreshInterval->s >= $this->getRefreshInterval()){
@@ -467,29 +430,5 @@ class TradingPair
     public function getLastRefresh()
     {
         return $this->lastRefresh;
-    }
-
-    /**
-     * Set orderBookLastRefresh
-     *
-     * @param \DateTime $orderBookLastRefresh
-     *
-     * @return TradingPair
-     */
-    public function setOrderBookLastRefresh($orderBookLastRefresh)
-    {
-        $this->orderBookLastRefresh = $orderBookLastRefresh;
-
-        return $this;
-    }
-
-    /**
-     * Get orderBookLastRefresh
-     *
-     * @return \DateTime
-     */
-    public function getOrderBookLastRefresh()
-    {
-        return $this->orderBookLastRefresh;
     }
 }

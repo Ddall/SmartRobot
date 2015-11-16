@@ -76,6 +76,9 @@ class Asset
         return $this->getName() . ' '. ' (' . $this->getTypeString() .')' ;
     }
 
+    /**
+     * @return string
+     */
     public function getTypeString(){
         switch($this->type){
             case self::TYPE_VIRTUAL:
@@ -89,6 +92,23 @@ class Asset
             case self::TYPE_UNDEFINED:
             default:
                 return 'Undefined';
+        }
+    }
+
+    /**
+     * Get the symbol of the asset, used to display units
+     *
+     * @return string
+     */
+    public function getDisplaySymbol(){
+        if($this->symbol === null){
+            if($this->abbr !== null){
+                return $this->abbr;
+            }else{
+                return $this->name;
+            }
+        }else{
+            return $this->symbol;
         }
     }
     

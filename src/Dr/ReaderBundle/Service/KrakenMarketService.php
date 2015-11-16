@@ -41,13 +41,25 @@ class KrakenMarketService extends AbstractDdxDrService implements MarketServiceI
     
     /**
      * Call this to update the trade history
-     * @return integer Number of new Trades sent to the entityManager
+     * @param bool|false $force ignore refresh interval
+     * @param bool|false $dryrun no persist
+     * @return array of number of new Trades saved
+     * @throws Exception
      */
-    public function updateAllTradeHistory($dryrun = false){
+    public function updateAllTradeHistory($force = false, $dryrun = false){
         $output = array();
         
         $kraken = $this->getMarketEntity();
         $activePairs = $kraken->getActiveTradingPairs();
+
+        if($force === false){
+            foreach($activePairs as $key => $pair){
+                if($pair->isStale() !== false){
+                    $activePairs[$key];
+                }
+            }
+        }
+
         foreach($activePairs as $pair){
             $output[$pair->getName()] = $this->updateTradeHistory($pair, $dryrun);
         }
@@ -85,7 +97,10 @@ class KrakenMarketService extends AbstractDdxDrService implements MarketServiceI
         foreach($entities as $e){
             $this->getManager()->persist($e);
         }
-        
+
+        $pair->setRefreshed();
+        $this->getManager()->persist($pair);
+
         if(!$dryrun){
             $this->getManager()->flush();
         }
@@ -171,14 +186,27 @@ class KrakenMarketService extends AbstractDdxDrService implements MarketServiceI
         );
     }
     
+
     /**
      * Use this to update the orderbook for all tradingpairs
      * costs 1 point per active pair
-     * @param boolean $dryrun
-     * @return array
+     * @param bool|false $force
+     * @param bool|false $dryrun
+     * @return mixed
+     * @throws Exception
      */
-    public function updateAllOrderBook($dryrun = false){
-        foreach($this->getMarketEntity()->getActiveTradingPairs() as $pair ){
+    public function updateAllOrderBook($force = false, $dryrun = false){
+        $tradingPairs = $this->getMarketEntity()->getActiveTradingPairs();
+
+        if($force === false){
+            foreach($tradingPairs as $key => $pair){
+                if($pair->isOrderBookStale() !== false){
+                    $tradingPairs[$key];
+                }
+            }
+        }
+
+        foreach($tradingPairs as $pair ){
             $output[$pair->getRemoteName()] = $this->updateOrderBook($pair, $dryrun);
         }
         

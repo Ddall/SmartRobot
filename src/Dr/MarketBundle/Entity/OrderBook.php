@@ -38,7 +38,7 @@ class OrderBook
     /**
      * @var TradingPair
      * 
-     * @ORM\ManyToOne(targetEntity="Dr\MarketBundle\Entity\TradingPair")
+     * @ORM\ManyToOne(targetEntity="Dr\MarketBundle\Entity\TradingPair", inversedBy="orderBooks")
      * @ORM\JoinColumn(name="tradingPair_id", referencedColumnName="id", nullable=false)
      */
     private $tradingPair;

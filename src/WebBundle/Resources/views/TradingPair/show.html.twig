@@ -3,11 +3,34 @@
 {% block title %}Ddx SmartRobot{% endblock %}
 
 {% block javascripts %}
-    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js" type="text/javascript"></script>
+    {{ parent(javascripts) }}
     <script src="//code.highcharts.com/4.1.8/highcharts.js"></script>
     <script src="//code.highcharts.com/4.1.8/modules/exporting.js"></script>
     <script type="text/javascript">
         {{ chart(chart) }}
+
+        $(document).ready(function() {
+            $('#bids').DataTable({
+                "paging": true,
+                "lengthChange": false,
+                "searching": false,
+                "ordering": true,
+                "info": false,
+                "autoWidth": false,
+                "pagingType": "simple"
+            });
+
+            $('#asks').DataTable({
+                "paging": true,
+                "lengthChange": false,
+                "searching": false,
+                "ordering": true,
+                "info": false,
+                "autoWidth": false,
+                "pagingType": "simple"
+            });
+
+        } );
     </script>
 {% endblock %}
 
@@ -44,17 +67,90 @@
 
     {% if tradingPair.isActive %}
     <div class="row">
-        <section id="trades">
-            <h3>History</h3>
-            <div id="tradehistory"></div>
-        </section>
+        <div class="col-md-12 col-sm-12 col-xs-12">
+            <section id="trades">
+                <h3>History</h3>
+                <div id="tradehistory"></div>
+            </section>
+        </div>
     </div>
 
     <div class="row">
-        <section id="orberbook">
-            <h3>Orderbook</h3>
-            <p>Orderbook placeholder</p>
-        </section>
+        <div class="col-md-12 col-sm-12 col-xs-12">
+            <section id=" orberbook">
+                <h3>Orderbook</h3>
+                <div class="row">
+                    {% if tradingPair.orderbooks is not empty %}
+                    {# BOX BIDS #}
+                    <div class="col-md-3 col-sm-6 col-xs-6">
+                        <div class="box">
+                            <div class="box-header">
+                                <h4 class="box-title">Buying</h4>
+                            </div>
+                            <div class="box-body no-padding">
+                                <table id="bids" class="table table-condensed table-striped table-hover">
+                                    <thead>
+                                        <th>Price</th>
+                                        <th>Volume</th>
+                                    </thead>
+                                    <tbody>
+                                        {% for order in tradingPair.orderbooks.last.bids %}
+                                            <tr>
+                                                <td>{{ order.price }} {{ tradingPair.assetFrom.displaySymbol }}</td>
+                                                <td>{{ order.volume }} {{ tradingPair.assetTo.displaySymbol }}</td>
+                                            </tr>
+                                        {% endfor %}
+                                    </tbody>
+                                </table>
+                                <div class="dataTables_info" id="bids_info"></div>
+                            </div>
+                        </div>
+                    </div>
+                    {# END BOX BIDS#}
+                    {# BOX ASKS #}
+                    <div class="col-md-3 col-sm-6 col-xs-6">
+                        <div class="box">
+                            <div class="box-header">
+                                <h4 class="box-title">Selling</h4>
+                            </div>
+                            <div class="box-body no-padding">
+                                <table id="asks" class="table table-condensed table-striped table-hover">
+                                    <thead>
+                                        <th>Price</th>
+                                        <th>Volume</th>
+                                    </thead>
+                                    <tbody>
+                                        {% for order in tradingPair.orderbooks.last.asks %}
+                                            <tr>
+                                                <td>{{ order.price }} {{ tradingPair.assetFrom.displaySymbol }}</td>
+                                                <td>{{ order.volume }} {{ tradingPair.assetTo.displaySymbol }}</td>
+                                            </tr>
+                                        {% endfor %}
+                                            <div id="asks_info"></div>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                    {# END BOX ASKS #}
+
+                </div>
+                {% else %}
+                    <div class="col-md-6 col-sm-6 col-xs-12">
+                        <div class="box box-solid box-warning">
+                            <div class="box-header">
+                                <h4>Orderbook is empty</h4>
+                            </div>
+                            <div class="box-body">
+                                <p>The orderbook for this trading pair is empty. Did you enable the auto-refresh for this market</p>
+                            </div>
+                        </div>
+                    </div>
+                {% endif %}
+
+
+            </section>
+        </div>
     </div>
 
     <div class="row">

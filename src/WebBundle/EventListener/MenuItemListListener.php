@@ -34,10 +34,19 @@ class MenuItemListListener{
     protected function getMenu(Request $request) {
 
         $menuItems = array(
-            'dashboard' =>  new MenuItemModel('dashboard', 'Home', 'app_homepage', array(), 'fa fa-home'),
+            'home' =>  new MenuItemModel('home', 'Home', 'app_homepage', array(), 'fa fa-home'),
             'market'    =>  new MenuItemModel('markets', 'Markets', 'dr_market_list', array(), 'fa fa-line-chart'),
-            'config_assets'    =>  new MenuItemModel('config_assets', 'Configure Assets', 'dr_config_asset', array(), 'fa fa-line-chart'),
+            'settings'  => new MenuItemModel('settings', 'Settings', '', array(), 'fa fa-cogs'),
+
         );
+
+        /**
+         * @var MenuItemModel
+         */
+        $menuItems['settings']
+            ->addChild(new MenuItemModel('settings_refresher', 'Refresher', 'dr_settings_refresher', array(), 'fa fa-clock-o'))
+            ->addChild(new MenuItemModel('settings_assets', 'Assets', 'dr_settings_asset', array(), 'fa fa-money'))
+        ;
 
         return $this->activateByRoute($request->get('_route'), $menuItems);
     }

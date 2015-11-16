@@ -24,7 +24,6 @@ class RefresherService{
     public function __construct(array $markets){
         $this->checkMarketsArray($markets);
         $this->markets = $markets;
-
     }
 
     /**
@@ -47,13 +46,13 @@ class RefresherService{
      * @param bool|false $dryrun
      * @return array
      */
-    public function refresh($dryrun = false){
+    public function refresh($force = false, $dryrun = false){
         $output = array();
 
         foreach($this->markets as $market){
 
-            $output[$market->getName()]['tradehistory'] = $market->updateAllTradeHistory($dryrun);
-            $output[$market->getName()]['orderbook'] = $market->updateAllOrderBook($dryrun);
+            $output[$market->getName()]['tradehistory'] = $market->updateAllTradeHistory($force, $dryrun);
+            $output[$market->getName()]['orderbook'] = $market->updateAllOrderBook($force, $dryrun);
         }
 
         return $output;

@@ -21,22 +21,27 @@ dr_tradingpair_show:
     requirements:
       tradingPair_id: \d+
 
-# Config
 
+# Settings
   #assets
-dr_config_asset:
-    path: /config/asset
-    defaults: { _controller: WebBundle:Config:asset}
+dr_settings_asset:
+    path: /settings/asset
+    defaults: { _controller: WebBundle:Settings:asset}
 
-dr_config_asset_new:
-    path: /config/new
-    defaults: { _controller: WebBundle:Config:newAsset}
+dr_settings_asset_new:
+    path: /settings/new
+    defaults: { _controller: WebBundle:Settings:newAsset}
 
-dr_config_asset_edit:
-    path: /config/asset/edit/{asset_id}
-    defaults: { _controller: WebBundle:Config:editAsset}
+dr_settings_asset_edit:
+    path: /settings/asset/edit/{asset_id}
+    defaults: { _controller: WebBundle:Settings:editAsset}
     requirements:
       asset_id: \d+
+
+  # refresher
+dr_settings_refresher:
+    path: /settings/refresher
+    defaults: { _controller: WebBundle:Settings:refresher }
 
 
 # Charts
