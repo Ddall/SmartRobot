@@ -28,7 +28,7 @@ class SettingsController extends Controller{
         foreach($entities as $key => $entity){
             $assets[$key]['entity'] = $entity;
             $assets[$key]['form'] = $this->createForm( new AssetType(), $entity, array(
-                'action' => $this->generateUrl('dr_config_asset_edit', array(
+                'action' => $this->generateUrl('dr_settings_asset_edit', array(
                     'asset_id' => $entity->getId(),
                 )),
             ));
