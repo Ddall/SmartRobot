@@ -71,6 +71,14 @@ class TradingPair
      */
     private $orderBooks;
 
+
+    /**
+     * @var Trade
+     *
+     * @ORM\OneToMany(targetEntity="Dr\MarketBundle\Entity\Trade", mappedBy="tradingPair")
+     */
+    private $trades;
+
     /**
      * @var integer
      *
@@ -468,4 +476,15 @@ class TradingPair
     {
         return $this->orderBookLastRefresh;
     }
+
+    /**
+     * Get Trades
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getTrades(){
+        return $this->trades;
+    }
+
+
 }

@@ -20,8 +20,12 @@ class HomeController extends Controller{
      * @return \Symfony\Component\HttpFoundation\Response
      */
     public function indexAction(Request $request){
+        // Find last update
+        $lastUpdate = $this->getHelper()->getTradingPairRepository()->getLastUpdateTime();
+
 
         return $this->render('WebBundle:Default:home.html.twig',array(
+                'lastUpdate' => $lastUpdate,
 
             )
         );

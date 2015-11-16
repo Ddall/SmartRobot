@@ -7,14 +7,27 @@
     <script src="//code.highcharts.com/4.1.8/highcharts.js"></script>
     <script src="//code.highcharts.com/4.1.8/modules/exporting.js"></script>
     <script type="text/javascript">
-        {{ chart(chart) }}
+        {#{{ chart(chart) }}#}
 
         $(document).ready(function() {
-            $('#bids').DataTable({
+
+            $('#trades').DataTable({
                 "paging": true,
+                "pageLength" : 10,
                 "lengthChange": false,
                 "searching": false,
-                "ordering": true,
+                "ordering": false,
+                "info": false,
+                "autoWidth": false,
+                "pagingType": "simple"
+            });
+
+            $('#bids').DataTable({
+                "paging": true,
+                "pageLength" : 15,
+                "lengthChange": false,
+                "searching": false,
+                "ordering": false,
                 "info": false,
                 "autoWidth": false,
                 "pagingType": "simple"
@@ -22,9 +35,10 @@
 
             $('#asks').DataTable({
                 "paging": true,
+                "pageLength" : 15,
                 "lengthChange": false,
                 "searching": false,
-                "ordering": true,
+                "ordering": false,
                 "info": false,
                 "autoWidth": false,
                 "pagingType": "simple"
@@ -68,17 +82,46 @@
     {% if tradingPair.isActive %}
     <div class="row">
         <div class="col-md-12 col-sm-12 col-xs-12">
-            <section id="trades">
+            <section id="tradehistory">
                 <h3>History</h3>
-                <div id="tradehistory"></div>
+                <div class="row">
+                    <div class="col-md-3 col-sm-6 col-xs-12">
+                        <div class="box">
+                            <div class="box-header">
+                                <h4 class="box-title">Trades</h4>
+                            </div>
+                            <div class="box-body no-padding">
+                                {% if tradingPair.trades is not empty %}
+                                    <table id="trades" class="table table-condensed table-striped table-hover">
+                                        <thead>
+                                            <th>Price</th>
+                                            <th>Volume</th>
+                                        </thead>
+                                        <tbody>
+                                        {% for trade in tradingPair.trades %}
+                                            <tr>
+                                                <td>{{ trade.price }} {{ tradingPair.assetFrom.displaySymbol }}</td>
+                                                <td>{{ trade.volume }} {{ tradingPair.assetTo.displaySymbol }}</td>
+                                            </tr>
+                                        {% endfor %}
+                                        </tbody>
+                                    </table>
+                                {% else %}
+                                    <p>The trading history is empty for this trading pair. Did you enable the auto-refresh for this market?</p>
+                                {% endif %}
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </section>
         </div>
     </div>
 
     <div class="row">
         <div class="col-md-12 col-sm-12 col-xs-12">
-            <section id=" orberbook">
+            <section id="orberbook">
                 <h3>Orderbook</h3>
+
                 <div class="row">
                     {% if tradingPair.orderbooks is not empty %}
                     {# BOX BIDS #}
@@ -86,6 +129,7 @@
                         <div class="box">
                             <div class="box-header">
                                 <h4 class="box-title">Buying</h4>
+
                             </div>
                             <div class="box-body no-padding">
                                 <table id="bids" class="table table-condensed table-striped table-hover">
@@ -112,6 +156,9 @@
                         <div class="box">
                             <div class="box-header">
                                 <h4 class="box-title">Selling</h4>
+                                <div class="box-tools pull-right">
+
+                                </div>
                             </div>
                             <div class="box-body no-padding">
                                 <table id="asks" class="table table-condensed table-striped table-hover">
@@ -142,7 +189,7 @@
                                 <h4>Orderbook is empty</h4>
                             </div>
                             <div class="box-body">
-                                <p>The orderbook for this trading pair is empty. Did you enable the auto-refresh for this market</p>
+                                <p>The orderbook for this trading pair is empty. Did you enable the auto-refresh for this market?</p>
                             </div>
                         </div>
                     </div>
