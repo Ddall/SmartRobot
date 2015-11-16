@@ -23,6 +23,7 @@ parameters:
 
     kraken:
         enable: true
+        api_key: null
         secret: null
         api_url: null
         api_version: 0
