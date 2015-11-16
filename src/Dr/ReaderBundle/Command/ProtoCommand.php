@@ -7,6 +7,8 @@
 
 namespace Dr\ReaderBundle\Command;
 
+use Dr\MarketBundle\Entity\TradingPair;
+use Dr\ReaderBundle\Service\BaseHelper;
 use Symfony\Bundle\FrameworkBundle\Command\ContainerAwareCommand;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Input\InputOption;
@@ -28,8 +30,27 @@ class ProtoCommand extends ContainerAwareCommand {
      */
     public function execute(InputInterface $input, OutputInterface $output) {
 
-        $base = $this->getContainer()->get('dr.refresher');
-        $base->refresh();
-        
+        /**
+         * @var BaseHelper
+         */
+        $base = $this->getContainer()->get('dr.helper');
+
+        if($base instanceof BaseHelper){
+            $pair = $base->getTradingPairRepository()->find(23);
+
+            if($pair instanceof TradingPair){
+                $output->write('isStale: ');
+                if( $pair->isStale() ){
+                    $output->writeln('true');
+                }else{
+                    $output->writeln('false');
+
+                }
+
+                $output->writeln('delay ' . $pair->getLastRefreshInterval()->s . ' toto' );
+            }
+
+        }
+
     }
 }
