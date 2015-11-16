@@ -174,7 +174,9 @@ class KrakenMarketService extends AbstractDdxDrService implements MarketServiceI
         foreach($rawOrderBook[$pair->getRemoteName()]['bids'] as $rawPos){
             $orderBook->addBid($this->rawToPosition($rawPos));
         }
-        
+
+        $pair->setOrderBookRefreshed();
+        $this->getManager()->persist($pair);
         $this->getManager()->persist($orderBook);
         if(!$dryrun){
             $this->getManager()->flush();
