@@ -1,6 +1,1 @@
 services:
-    dr.cruncher.ema:
-        class: Dr\StrategyBundle\Service\Cruncher\EMACruncher
-        arguments:
-            entityManager: "@doctrine.orm.entity_manager"
-
