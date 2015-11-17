@@ -7,8 +7,6 @@
     <script src="//code.highcharts.com/4.1.8/highcharts.js"></script>
     <script src="//code.highcharts.com/4.1.8/modules/exporting.js"></script>
     <script type="text/javascript">
-        {#{{ chart(chart) }}#}
-
         $(document).ready(function() {
 
             $('#trades').DataTable({
@@ -50,31 +48,26 @@
 
 {% block page_title %}
     Trading pair <i>{{ tradingPair.name }}</i> on <a href="{{ path('dr_market_show', {'market_id': tradingPair.market.id}) }}"><i>{{ tradingPair.market.name }}</i></a>
+{% endblock %}
+{% block page_subtitle %}
     {% if tradingPair.isActive %}
         <span class="label label-success">Active</span>
     {% else %}
         <span class="label label-default">Inactive</span>
     {% endif %}
 {% endblock %}
-{% block page_subtitle %}{% endblock %}
 
 {% block page_content %}
     <div class="row">
         <section id="settings">
             <div class="col-md-6 col-sm-6 col-xs-12">
-                <div class="box box-default {% if tradingPair.isActive %}collapsed-box{% endif %}">
-                    <div class="box-header with-border">
-                        <h4 class="box-title">Settings</h4>
-                        <div class="box-tools pull-right">
-                            <button class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-plus"></i></button>
-                        </div>
-                    </div>
-                    <div class="box-body">
-                        <div class="col-3-md">
-                            {{ form(formTradingPair) }}
-                        </div>
-                    </div><!-- /.box-body -->
-                </div><!-- /.box -->
+                {% include 'WebBundle:Block:box.html.twig' ignore missing with {
+                'variants': 'box-default',
+                'collapsed': tradingPair.isActive,
+                'title': 'Settings',
+                'collapsible': true,
+                'body': ( form(formTradingPair) )
+                } %}
             </div>
         </section>
     </div>
@@ -121,7 +114,6 @@
         <div class="col-md-12 col-sm-12 col-xs-12">
             <section id="orberbook">
                 <h3>Orderbook</h3>
-
                 <div class="row">
                     {% if tradingPair.orderbooks is not empty %}
                     {# BOX BIDS #}
@@ -129,7 +121,6 @@
                         <div class="box">
                             <div class="box-header">
                                 <h4 class="box-title">Buying</h4>
-
                             </div>
                             <div class="box-body no-padding">
                                 <table id="bids" class="table table-condensed table-striped table-hover">
@@ -149,15 +140,12 @@
                                 <div class="dataTables_info" id="bids_info"></div>
                             </div>
                         </div>
-                    </div>
-                    {# END BOX BIDS#}
-                    {# BOX ASKS #}
-                    <div class="col-md-3 col-sm-6 col-xs-6">
+                    </div>{# END BOX BIDS#}
+                    <div class="col-md-3 col-sm-6 col-xs-6">{# BOX ASKS #}
                         <div class="box">
                             <div class="box-header">
                                 <h4 class="box-title">Selling</h4>
                                 <div class="box-tools pull-right">
-
                                 </div>
                             </div>
                             <div class="box-body no-padding">
@@ -178,34 +166,20 @@
                                 </table>
                             </div>
                         </div>
-                    </div>
-                    {# END BOX ASKS #}
-
+                    </div>{# END BOX ASKS #}
                 </div>
                 {% else %}
                     <div class="col-md-6 col-sm-6 col-xs-12">
-                        <div class="box box-solid box-warning">
-                            <div class="box-header">
-                                <h4>Orderbook is empty</h4>
-                            </div>
-                            <div class="box-body">
-                                <p>The orderbook for this trading pair is empty. Did you enable the auto-refresh for this market?</p>
-                            </div>
-                        </div>
+                        {% include 'WebBundle:Block:box.html.twig' ignore missing with {
+                        'variants': 'box-solid box-warning',
+                        'title': 'Orderbook is empty',
+                        'body': '<p>The orderbook for this trading pair is empty. Did you enable the auto-refresh for this market?</p>',
+                        } %}
                     </div>
                 {% endif %}
-
-
             </section>
         </div>
     </div>
-
-    <div class="row">
-        <section id="statistics">
-            <h3>Statistiques</h3>
-        </section>
-    </div>
-
     {% else %}
     <div class="row">
         <section id="info">

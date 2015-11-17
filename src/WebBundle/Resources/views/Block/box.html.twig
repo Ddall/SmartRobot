@@ -1,5 +1,6 @@
 {# Usage:
     {% include 'WebBundle:Block:box.html.twig' ignore missing with {
+        'id': 'identifier',
         'variants': 'box-primary',
         'collapsed': false,
         'title': 'Title',
@@ -10,12 +11,12 @@
     } %}
 #}
 {% autoescape false %}
-<div class="box {{ variants }}{% if collapsed|default(false) %} collapsed-box{% endif %}">
+<div {% if id|default(false) %}id="{{ id }}"{% endif %} class="box {{ variants }}{% if collapsed|default(false) %} collapsed-box{% endif %}">
     <div class="box-header with-border">
         <h3 class="box-title">{{ title|default('define "title"') }}</h3>
         {% if collapsible is defined or tools is defined %}
             <div class="box-tools pull-right">
-                {{ tools }}
+                {{ tools|default('') }}
                 {% if collapsible or collapsed|default(false) %}
                     {% if collapsed|default(false) %}
                         <button class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-plus"></i></button>

@@ -1,0 +1,17 @@
+{% extends "::base.html.twig" %}
+{% block title %}Ddx SmartRobot{% endblock %}
+
+{% block page_title %}Refresher{% endblock %}
+{% block page_subtitle %}{% endblock %}
+{% block page_content %}
+    <section id="new_asset">
+        {% include 'WebBundle:Block:box.html.twig' ignore missing with {
+            'variants': 'box-primary',
+            'title': 'Title',
+            'tools': '',
+            'collapsible': true,
+            'body': 'body content',
+            'footer': 'footer content',
+        } %}
+    </section>
+{% endblock %}
