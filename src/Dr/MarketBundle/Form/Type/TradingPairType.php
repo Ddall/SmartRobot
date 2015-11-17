@@ -1,6 +1,6 @@
 <?php
 
-namespace Dr\MarketBundle\Form;
+namespace Dr\MarketBundle\Form\Type;
 
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;

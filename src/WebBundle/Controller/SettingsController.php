@@ -10,7 +10,7 @@ namespace WebBundle\Controller;
 
 
 use Dr\MarketBundle\Entity\Asset;
-use Dr\MarketBundle\Form\AssetType;
+use Dr\MarketBundle\Form\Type\AssetType;
 use Dr\ReaderBundle\Service\BaseHelper;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;

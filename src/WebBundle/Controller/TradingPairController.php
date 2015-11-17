@@ -9,7 +9,7 @@
 namespace WebBundle\Controller;
 
 
-use Dr\MarketBundle\Form\TradingPairType;
+use Dr\MarketBundle\Form\Type\TradingPairType;
 use Dr\ReaderBundle\Service\BaseHelper;
 use Ob\HighchartsBundle\Highcharts\Highchart;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
