@@ -10,12 +10,14 @@ namespace WebBundle\Controller;
 
 
 use Dr\ReaderBundle\Service\BaseHelper;
+use Ob\HighchartsBundle\Highcharts\Highchart;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 
 class HomeController extends Controller{
 
     /**
+     *
      * @param Request $request
      * @return \Symfony\Component\HttpFoundation\Response
      */
@@ -23,12 +25,16 @@ class HomeController extends Controller{
         // Find last update
         $lastUpdate = $this->getHelper()->getTradingPairRepository()->getLastUpdateTime();
 
+        $chart = new Highchart();
+        $chart->chart->renderTo();
 
         return $this->render('WebBundle:Default:home.html.twig',array(
                 'lastUpdate' => $lastUpdate,
+                'chart' => $chart,
 
             )
         );
+
     }
 
 

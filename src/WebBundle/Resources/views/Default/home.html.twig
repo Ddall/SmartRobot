@@ -4,6 +4,15 @@
 {% block page_subtitle %}{% endblock %}
 {% block page_content %}
 
+{% block javascripts %}
+    {{ parent(javascripts) }}
+    <script src="//code.highcharts.com/4.1.8/highcharts.js"></script>
+    <script src="//code.highcharts.com/4.1.8/modules/exporting.js"></script>
+    <script type="text/javascript">
+        {{ chart(chart) }}
+    </script>
+{% endblock %}
+
 <div class="row">
     <div class="col-md-3 col-sm-6 col-xs-12">
         <div class="info-box">
@@ -15,6 +24,11 @@
                 <span class="info-box-number">{{ lastUpdate|date(format_datetime) }}</span>
             </div><!-- /.info-box-content -->
         </div>
+    </div>
+</div>
+<div class="row">
+    <div class="col-xs-12">
+        <div id="historychart"></div>
     </div>
 </div>
 
