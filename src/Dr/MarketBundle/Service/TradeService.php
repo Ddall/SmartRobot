@@ -54,7 +54,7 @@ class TradeService extends AbstractDdxDrService {
     }
     
     /**
-     * Enriche
+     *
      * @param Market $market
      * @param TradingPair $pair
      */

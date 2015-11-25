@@ -48,6 +48,7 @@ class MarketController extends Controller{
         return $this->render('WebBundle:Market:show.html.twig', array(
             'market' => $market,
         ));
+
     }
 
     /**

@@ -37,6 +37,28 @@ class ChartController extends Controller{
         return new Response(json_encode($norm));
     }
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
     /**
      * @param Request $request
      * @param int $tradingPair_id

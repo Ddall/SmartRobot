@@ -10,6 +10,7 @@ use Doctrine\ORM\EntityManagerInterface;
 use Dr\MarketBundle\Service\TradeService;
 use Dr\MarketBundle\Service\TradingPairService;
 use Dr\ReaderBundle\Service\KrakenMarketService;
+use Dr\StrategyBundle\Service\ComputeService;
 
 abstract class AbstractDdxHelper{
 
@@ -17,6 +18,26 @@ abstract class AbstractDdxHelper{
      * @var EntityManagerInterface
      */
     protected $entityManager;
+
+    /**
+     * @var TradeService
+     */
+    protected $tradeService;
+
+    /**
+     * @var TradingPairService
+     */
+    protected $tradingPairService;
+
+    /**
+     * @var KrakenMarketService
+     */
+    protected $krakenMarketService;
+
+    /**
+     * @var ComputeService
+     */
+    protected $computeService;
     
     /**
      * @param EntityManagerInterface $entityManager
@@ -43,10 +64,7 @@ abstract class AbstractDdxHelper{
         return $this->getEntityManager();
     }
 
-    /**
-     * @var TradeService
-     */
-    protected $tradeService;
+
 
     /**
      * @param TradeService $tradeService
@@ -64,10 +82,7 @@ abstract class AbstractDdxHelper{
         return $this->tradeService;
     }
 
-    /**
-     * @var TradingPairService
-     */
-    protected $tradingPairService;
+
     
     /**
      * @param TradingPairService $tradingPairService
@@ -85,10 +100,7 @@ abstract class AbstractDdxHelper{
         return $this->tradingPairService;
     }
     
-    /**
-     * @var KrakenMarketService
-     */
-    protected $krakenMarketService;
+
     
     /**
      * @param KrakenMarketService $krakenMarketService
@@ -104,6 +116,22 @@ abstract class AbstractDdxHelper{
      */
     public function getKrakenMarketService(){
         return $this->krakenMarketService;
+    }
+
+    /**
+     * @param ComputeService $computeService
+     * @return $this
+     */
+    public function setComputeService(ComputeService $computeService){
+        $this->computeService = $computeService;
+        return $this;
+    }
+
+    /**
+     * @return ComputeService
+     */
+    public function getComputeService(){
+        return $this->computeService;
     }
     
 }
