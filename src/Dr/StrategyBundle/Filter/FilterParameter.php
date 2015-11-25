@@ -117,7 +117,7 @@ class FilterParameter{
      * @return mixed
      */
     public function getDefault(){
-        return $this->getDefault();
+        return $this->default();
     }
 
 
