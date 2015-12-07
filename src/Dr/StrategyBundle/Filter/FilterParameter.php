@@ -7,8 +7,6 @@
 namespace Dr\StrategyBundle\Filter;
 
 
-use Symfony\Component\Config\Definition\Exception\InvalidTypeException;
-
 class FilterParameter{
 
     const TYPE_INTEGER  = 'integer';
