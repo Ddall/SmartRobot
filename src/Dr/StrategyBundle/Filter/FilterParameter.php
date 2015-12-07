@@ -7,6 +7,8 @@
 namespace Dr\StrategyBundle\Filter;
 
 
+use Symfony\Component\Config\Definition\Exception\InvalidTypeException;
+
 class FilterParameter{
 
     const TYPE_INTEGER  = 'integer';
@@ -133,7 +135,11 @@ class FilterParameter{
      * @param bool $required
      * @return $this
      */
-    public function setRequired(bool $required){
+    public function setRequired($required){
+        if(!is_bool($required)){
+            throw new \Exception('wrong type');
+        }
+
         $this->required = $required;
         return $this;
     }
