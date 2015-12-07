@@ -26,4 +26,12 @@ interface FilterInterface{
      */
     public function getDefaults();
 
+    /**
+     * Return the type of return to expect from a filter. can be any value from FILTER_TYPE_*
+     * @return integer
+     */
+    public function getType();
+
+
+
 }

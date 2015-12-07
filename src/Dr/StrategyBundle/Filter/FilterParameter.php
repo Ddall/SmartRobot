@@ -9,6 +9,10 @@ namespace Dr\StrategyBundle\Filter;
 
 class FilterParameter{
 
+    const TYPE_INTEGER  = 'integer';
+    const TYPE_FLOAT    = 'float';
+    const TYPE_BOOL     = 'bool';
+
     /**
      * @var string
      */
@@ -31,6 +35,12 @@ class FilterParameter{
     private $default;
 
     /**
+     * false by default
+     * @var bool
+     */
+    private $required;
+
+    /**
      * @return string
      */
     public function getType(){
@@ -44,9 +54,9 @@ class FilterParameter{
      */
     public function setType($type){
         switch(strtolower($type)){
-            case 'integer':
-            case 'float':
-            case 'bool':
+            case self::TYPE_INTEGER:
+            case self::TYPE_FLOAT:
+            case self::TYPE_BOOL;
             case 'boolean':
                 $this->type = strtolower($type);
                 break;
@@ -58,7 +68,6 @@ class FilterParameter{
 
         return $this;
     }
-
 
     /**
      * @return mixed
@@ -118,6 +127,61 @@ class FilterParameter{
      */
     public function getDefault(){
         return $this->default();
+    }
+
+    /**
+     * @param bool $required
+     * @return $this
+     */
+    public function setRequired(bool $required){
+        $this->required = $required;
+        return $this;
+    }
+
+    /**
+     * @return bool
+     */
+    public function isRequired(){
+        if($this->required === null){
+            return false;
+        }
+
+        return $this->required;
+    }
+
+    /**
+     * @return bool
+     */
+    public function hasDefault(){
+        if($this->default === null){
+            return false;
+        }
+        return true;
+    }
+
+    /**
+     * @return bool
+     */
+    public function hasValue(){
+        if($this->value === null){
+            return false;
+        }
+        return false;
+    }
+
+    /**
+     * @return bool
+     */
+    public function isValid(){
+        if($this->isRequired()){
+            if( $this->hasValue() || $this->hasDefault() ){
+                return true;
+            }
+
+            return true;
+        }
+
+        return true;
     }
 
 

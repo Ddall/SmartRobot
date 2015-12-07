@@ -15,6 +15,7 @@ namespace Dr\StrategyBundle\Filter;
 class TraderMAFilter extends AbstractFilter{
 
     /**
+     * @inheritdoc
      * @return string
      */
     public function getName() {
@@ -22,8 +23,7 @@ class TraderMAFilter extends AbstractFilter{
     }
 
     /**
-     * Returns an array of FilterParameter that represent parameters used by the filter
-     *
+     * @inheritdoc
      * @return array
      */
     public function getDefaults() {
@@ -44,4 +44,14 @@ class TraderMAFilter extends AbstractFilter{
             'timePeriod' => $timePeriod,
             'mAType' => $mAType,
         );
-    }}
+    }
+
+    /**
+     * @inheritdoc
+     * @return integer
+     */
+    public function getType() {
+        return self::FILTER_TYPE_FLOAT;
+    }
+
+}
