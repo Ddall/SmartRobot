@@ -1,27 +1,27 @@
 {% extends "::base.html.twig" %}
 {% block title %}Ddx SmartRobot{% endblock %}
-
-{% block page_title %}Add asset{% endblock %}
+{% block page_title %}Add strategy{% endblock %}
 
 {% block page_subtitle %}
-    Create a new asset
-    <a href="{{ path('dr_settings_asset') }}" class="btn btn-primary"><i class="fa fa-angle-left"></i> Back</a>
+    Create a new strategy
+    <a href="{{ path('dr_strategy_list') }}" class="btn btn-primary"><i class="fa fa-angle-left"></i> Back</a>
 {% endblock %}
+
 {% block page_content %}
-    <section id="new_asset">
+    <div class="container-fluid">
         <div class="row">
             <div class="col-md-6 col-sm-6 col-xs-12">
                 <div class="box box-primary">
                     <div class="box-header">
                         <div class="box-title">
-                            <h3>New asset</h3>
+                            <h3>New strategy</h3>
                         </div>
                     </div>
                     <div class="box-body">
-                        {{ form(form) }}
+                        {{ form(formStrategy) }}
                     </div>
                 </div>
             </div>
         </div>
-    </section>
+    </div>
 {% endblock %}

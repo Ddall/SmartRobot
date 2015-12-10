@@ -1,0 +1,14 @@
+{% extends "::base.html.twig" %}
+{% block title %}Ddx SmartRobot{% endblock %}
+{% block page_title %}
+    Strategy - {{ strategy.name|default('Unnamed strategy #'+ strategy.id) }}
+    <a href="{{ path('dr_strategy_edit', {'strategy_id': strategy.id }) }}" class="btn btn-primary"><i class="fa fa-cog"></i> Edit</a>
+{% endblock %}
+{% block page_subtitle %}{% endblock %}
+{% block page_content %}
+    <div class="container-fluid">
+        <div class="row">
+
+        </div>
+    </div>
+{% endblock %}

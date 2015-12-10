@@ -35,6 +35,7 @@ class MenuItemListListener{
 
         $menuItems = array(
             'home' =>  new MenuItemModel('home', 'Home', 'app_homepage', array(), 'fa fa-home'),
+            'strategies' => new MenuItemModel('strategies', 'Strategies', 'dr_strategy_list', array(), 'fa fa-user-secret'),
             'market'    =>  new MenuItemModel('markets', 'Markets', 'dr_market_list', array(), 'fa fa-line-chart'),
             'settings'  => new MenuItemModel('settings', 'Settings', '', array(), 'fa fa-cogs'),
 

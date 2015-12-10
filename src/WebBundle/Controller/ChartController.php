@@ -38,27 +38,6 @@ class ChartController extends Controller{
     }
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
     /**
      * @param Request $request
      * @param int $tradingPair_id

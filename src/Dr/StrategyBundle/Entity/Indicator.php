@@ -50,6 +50,15 @@ class Indicator
      */
     private $comments;
 
+
+    /**
+     * @var Strategy
+     *
+     * @ORM\ManyToOne(targetEntity="Dr\StrategyBundle\Entity\Strategy", inversedBy="indicators")
+     * @ORM\JoinColumn(name="strategy_id", referencedColumnName="id")
+     */
+    private $strategy;
+
     // AUTO
 
     /**
@@ -166,6 +175,24 @@ class Indicator
     public function getComments()
     {
         return $this->comments;
+    }
+
+
+    /**
+     * @return Strategy
+     */
+    public function getStrategy(){
+        return $this->strategy;
+    }
+
+    /**
+     * @param Strategy $strategy
+     * @return $this
+     */
+    public function setStrategy(Strategy $strategy){
+        $this->strategy = $strategy;
+
+        return $this;
     }
 }
 

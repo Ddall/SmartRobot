@@ -87,12 +87,14 @@
                                 {% if tradingPair.trades is not empty %}
                                     <table id="trades" class="table table-condensed table-striped table-hover">
                                         <thead>
+                                            <th>#</th>
                                             <th>Price</th>
                                             <th>Volume</th>
                                         </thead>
                                         <tbody>
                                         {% for trade in tradingPair.trades %}
                                             <tr>
+                                                <td>{{ trade.id }}</td>
                                                 <td>{{ trade.price }} {{ tradingPair.assetFrom.displaySymbol }}</td>
                                                 <td>{{ trade.volume }} {{ tradingPair.assetTo.displaySymbol }}</td>
                                             </tr>

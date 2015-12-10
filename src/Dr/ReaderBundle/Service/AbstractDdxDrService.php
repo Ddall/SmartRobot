@@ -41,5 +41,12 @@ abstract class AbstractDdxDrService extends AbstractDdxHelper{
     public function getAssetRepository(){
         return $this->getManager()->getRepository('DrMarketBundle:Asset');
     }
+
+    /**
+     * @return ObjectRepository
+     */
+    public function getStrategiesRepository(){
+        return $this->getManager()->getRepository('DrStrategyBundle:Strategy');
+    }
     
 }

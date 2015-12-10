@@ -1,0 +1,37 @@
+{% extends "::base.html.twig" %}
+{% block title %}Ddx SmartRobot{% endblock %}
+{% block page_title %}Strategies{% endblock %}
+{% block page_subtitle %}<a class="btn btn-primary" href="{{ path('dr_strategy_add') }}"><i class="fa fa-plus"></i> Add</a>{% endblock %}
+{% block page_content %}
+<div class="container-fluid">
+    <div class="row">
+        {% if strategies is not empty %}
+            {% for strategy in strategies %}
+            <div class="col-md-4">
+                <div class="box {% if strategy.isActive %}box-success{% endif %}">
+                    <div class="box-header with-border">
+                        <a href="{{ path('dr_strategy_show', {'strategy_id': strategy.id}) }}"><h3 class="box-title">{{ strategy.name }}</h3></a>
+                        <div class="box-tools pull-right">
+                            {% if not strategy.isActive %}
+                                <span class="label label-warning">Disabled</span>
+                            {% endif %}
+                            <a href="#"><i class="fa fa-cog"></i></a>
+                        </div>
+                    </div>
+                    <div class="box-body">
+                        toto
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        {% else %}
+            {% include 'WebBundle:Block:box.html.twig' ignore missing with {
+                'id': 'no_strategies',
+                'variants': 'box-warning',
+                'title': 'No strategies defined',
+                'body': 'You can start creating new strategies',
+            } %}
+        {% endif %}
+    </div>
+</div>
+{% endblock %}

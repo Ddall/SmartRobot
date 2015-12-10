@@ -45,12 +45,34 @@ dr_settings_refresher:
 
 
 # Charts
-
 dr_chart_ohlc:
     path: /chart/ohlc/{tradingPair_id}
     defaults: { _controller: WebBundle:Chart:tradeHistoryOHLC}
     requirements:
       tradingPair_id: \d+
+
+
+# Strategy
+dr_strategy_list:
+    path: /strategies
+    defaults: { _controller: WebBundle:Strategy:list }
+
+dr_strategy_add:
+    path: /strategies/new
+    defaults: { _controller: WebBundle:Strategy:add }
+
+dr_strategy_show:
+    path: /strategy/{strategy_id}
+    defaults: { _controller: WebBundle:Strategy:show }
+    requirements:
+      strategy_id: \d+
+
+dr_strategy_edit:
+    path: /strategies/{strategy_id}/edit
+    defaults: { _controller: WebBundle:Strategy:edit }
+    requirements:
+      strategy_id: \d+
+
 
 # Profile
 avanzu_admin_profile:
