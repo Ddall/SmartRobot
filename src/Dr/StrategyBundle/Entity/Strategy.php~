@@ -50,13 +50,6 @@ class Strategy
      */
     private $indicators;
 
-    /**
-     * Constructor
-     */
-    public function __construct()
-    {
-        $this->indicators = new \Doctrine\Common\Collections\ArrayCollection();
-    }
 
     /**
      * Get id
@@ -149,39 +142,5 @@ class Strategy
         }
         return false;
     }
-
-
-    /**
-     * Add indicator
-     *
-     * @param \Dr\StrategyBundle\Entity\Indicator $indicator
-     *
-     * @return Strategy
-     */
-    public function addIndicator(\Dr\StrategyBundle\Entity\Indicator $indicator)
-    {
-        $this->indicators[] = $indicator;
-
-        return $this;
-    }
-
-    /**
-     * Remove indicator
-     *
-     * @param \Dr\StrategyBundle\Entity\Indicator $indicator
-     */
-    public function removeIndicator(\Dr\StrategyBundle\Entity\Indicator $indicator)
-    {
-        $this->indicators->removeElement($indicator);
-    }
-
-    /**
-     * Get indicators
-     *
-     * @return \Doctrine\Common\Collections\Collection
-     */
-    public function getIndicators()
-    {
-        return $this->indicators;
-    }
 }
+

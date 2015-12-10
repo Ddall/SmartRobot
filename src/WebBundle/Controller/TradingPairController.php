@@ -11,10 +11,8 @@ namespace WebBundle\Controller;
 
 use Dr\MarketBundle\Form\Type\TradingPairType;
 use Dr\ReaderBundle\Service\BaseHelper;
-use Ob\HighchartsBundle\Highcharts\Highchart;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
-use Zend\Json\Expr;
 
 class TradingPairController extends Controller{
 
