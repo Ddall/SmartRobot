@@ -21,6 +21,10 @@ parameters:
 
     bower_bin: "/usr/local/bin/bower"
 
+    monolog_params:
+      from_email: errors@localhost
+      to_email: errors@localhost
+
     kraken:
         enable: true
         api_key: null

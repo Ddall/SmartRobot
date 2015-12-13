@@ -92,6 +92,6 @@ fos_user:
     firewall_name: main
     user_class: UserBundle\Entity\User
 
-
+# Avanzu Theme
 avanzu_admin_theme:
   bower_bin : %bower_bin%
