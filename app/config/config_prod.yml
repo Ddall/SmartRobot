@@ -31,7 +31,7 @@ monolog:
             handler: swift
         swift:
             type:       swift_mailer
-            from_email: '%monolog_params.from_email%'
-            to_email:   '%monolog_params%.to_email%'
-            subject:    '%monolog_params.subject%'
+            from_email: '%monolog_params_from_email%'
+            to_email:   '%monolog_params_to_email%'
+            subject:    '%monolog_params_subject%'
             level:      debug

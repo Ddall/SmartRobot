@@ -21,10 +21,9 @@ parameters:
 
     bower_bin: "/usr/local/bin/bower"
 
-    monolog_params:
-        from_email: ddxsr-errors@localhost
-        to_email: ddxsr-errors@localhost
-        subject: DdxSr - An Error Occurred!
+    monolog_params_from_email: ddxsr-errors@localhost
+    monolog_params_to_email: ddxsr-errors@localhost
+    monolog_params_subject: DdxSr - An Error Occurred!
 
     kraken:
         enable: true
