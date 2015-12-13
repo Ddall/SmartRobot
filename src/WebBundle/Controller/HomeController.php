@@ -28,7 +28,7 @@ class HomeController extends Controller{
         $chart = new Highchart();
         $chart->chart->renderTo('homeChart');
 
-        $memoryUsage = $this->human_filesize(memory_get_usage());
+        $memoryUsage = $this->humanFilesize(memory_get_usage());
 
         return $this->render('WebBundle:Default:home.html.twig',array(
                 'lastUpdate' => $lastUpdate,
@@ -53,10 +53,10 @@ class HomeController extends Controller{
      * @param int $decimals
      * @return string
      */
-    private function human_filesize($bytes, $decimals = 2) {
+    private function humanFilesize($bytes, $decimals = 2) {
         $size = array('B', 'kB', 'MB', 'GB', 'TB', 'PB', 'EB', 'ZB', 'YB');
         $factor = floor((strlen($bytes) - 1) / 3);
-        return sprintf("%.{$decimals}f", $bytes / pow(1024, $factor)) . @$size[ $factor ];
+        return sprintf("%.{$decimals}f", $bytes / pow(1024, $factor)) . $size[ $factor ];
     }
 
 
