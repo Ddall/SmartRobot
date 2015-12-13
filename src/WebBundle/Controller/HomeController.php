@@ -26,10 +26,13 @@ class HomeController extends Controller{
         $lastUpdate = $this->getHelper()->getTradingPairRepository()->getLastUpdateTime();
 
         $chart = new Highchart();
-        $chart->chart->renderTo();
+        $chart->chart->renderTo('homeChart');
+
+        $memoryUsage = memory_get_usage();
 
         return $this->render('WebBundle:Default:home.html.twig',array(
                 'lastUpdate' => $lastUpdate,
+                'memoryUsage' => $memoryUsage,
                 'chart' => $chart,
 
             )
