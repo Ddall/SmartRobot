@@ -15,8 +15,7 @@ class MarketTest extends \PHPUnit_Framework_TestCase {
 
         $market = $this->createEntity();
 
-
-        $
+        $this->assertInstanceOf('Dr\MarketBundle\Entity\Market', $market, 'Market constructor failed to create instance of Market');
 
     }
 
