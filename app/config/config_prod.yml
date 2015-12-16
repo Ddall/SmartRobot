@@ -31,7 +31,11 @@ monolog:
             handler: swift
         swift:
             type:       swift_mailer
-            from_email: '%monolog_params_from_email%'
-            to_email:   '%monolog_params_to_email%'
-            subject:    '%monolog_params_subject%'
+#            from_email: '%monolog_params_from_email%'
+#            to_email:   '%monolog_params_to_email%'
+#            subject:    '%monolog_params_subject%'
+#            level:      debug
+            from_email: 'errors@localhost'
+            to_email:   'errors@localhost'
+            subject:    'An error occured'
             level:      debug
