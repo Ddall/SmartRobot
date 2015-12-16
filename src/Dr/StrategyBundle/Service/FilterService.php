@@ -25,8 +25,11 @@ class FilterService extends AbstractDdxDrService{
         $this->filters = $filters;
     }
 
+    /**
+     * @return array
+     */
     public function getFilters(){
-
+        return $this->filters;
     }
 
     public function getFiltersType(){

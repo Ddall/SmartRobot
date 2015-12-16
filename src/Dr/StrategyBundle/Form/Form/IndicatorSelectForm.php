@@ -5,7 +5,6 @@
  */
 
 namespace Dr\StrategyBundle\Form\Form;
-use PHPUnit_Framework_Assert
 
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;

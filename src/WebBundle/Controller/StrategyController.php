@@ -110,7 +110,7 @@ class StrategyController extends Controller {
      * @param         $strategy_id
      * @return \Symfony\Component\HttpFoundation\Response
      */
-    public function addIndicator(Request $request, $strategy_id){
+    public function addIndicatorAction(Request $request, $strategy_id){
         return $this->render('Web:Strategy:addIndicator.html.twig', array(
 
         ));
