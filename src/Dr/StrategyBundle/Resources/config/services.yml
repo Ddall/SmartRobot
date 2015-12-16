@@ -1,1 +1,6 @@
 services:
+    dr.filters:
+        class: Dr\StrategyBundle\Service\FilterService
+        arguments:
+            filters:
+                - Dr\StrategyBundle\Filters\TradeMAFilter

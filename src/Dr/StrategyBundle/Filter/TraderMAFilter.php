@@ -27,7 +27,7 @@ class TraderMAFilter extends AbstractFilter{
      * @return array
      */
     public function getDefaults() {
-        $timePeriod= new FilterParameter();
+        $timePeriod = new FilterParameter();
         $timePeriod
             ->setType('integer')
             ->setComment('Number of period. Valid range from 2 to 100000.')

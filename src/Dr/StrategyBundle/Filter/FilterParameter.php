@@ -56,7 +56,7 @@ class FilterParameter{
         switch(strtolower($type)){
             case self::TYPE_INTEGER:
             case self::TYPE_FLOAT:
-            case self::TYPE_BOOL;
+            case self::TYPE_BOOL:
             case 'boolean':
                 $this->type = strtolower($type);
                 break;
@@ -107,7 +107,7 @@ class FilterParameter{
             $this->setType( gettype($value) );
         }
 
-        $this->setValue();
+        $this->value = $value;
 
         return $this;
     }
