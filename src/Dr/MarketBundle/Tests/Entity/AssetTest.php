@@ -23,6 +23,7 @@ class AssetTest extends \PHPUnit_Framework_TestCase {
         $this->assertEquals('€', $asset->getDisplaySymbol(), 'Asset contructor did not set symbol properly');
 
         unset($asset);
+        $asset = new Asset();
         $this->assertEquals(Asset::TYPE_UNDEFINED, $asset->getType(), 'Asset constructor failed to set default type');
 
 
