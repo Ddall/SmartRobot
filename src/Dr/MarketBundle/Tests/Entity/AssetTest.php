@@ -29,9 +29,7 @@ class AssetTest extends \PHPUnit_Framework_TestCase {
 
     }
 
-    /**
-     * @expectedException \Exception
-     */
+
     public function testTypeException(){
         $asset = new Asset();
 
