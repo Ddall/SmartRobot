@@ -4,7 +4,7 @@
  * Created by Allan.
  */
 
-namespace Dr\StrategyBundle\Form\Form;
+namespace Dr\StrategyBundle\Form\Type;
 
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
