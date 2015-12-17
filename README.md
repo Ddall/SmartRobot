@@ -8,9 +8,6 @@ Rework of DdxDumbRobot, don't get your hopes up just yet :-)
 * composer update ``php composer update``
 * doctrine update ``php app\console doctrine:schema:update --force``
 * load fixtures    ``php app\console doctrine:fixtures:load --append``
-* load tradingpairs ``php app\console kraken:tradingpairs:update``
-* #Enable at least one trading pair.
-* run market update ``php app\console kraken:tradehistory:update``
 
 ## Commands
 ```bash
@@ -19,7 +16,5 @@ Rework of DdxDumbRobot, don't get your hopes up just yet :-)
 
 ## ADD TO CRONTAB 
 ```
-* * * * * /usr/bin/php /home/ubuntu/DumbRobot/app/console kraken:tradehistory:update >/dev/null 2>&1
-*/5 * * * * /usr/bin/php /home/ubuntu/DumbRobot/app/console kraken:orderbook:update >/dev/null 2>&1
-0 * * * *  /usr/bin/php /home/ubuntu/backup2mail.php >/dev/null 2>&1
+* * * * * /usr/bin/php app/console markets:refresh > /dev/null 2>&1
 ```
