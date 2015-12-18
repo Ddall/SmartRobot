@@ -7,8 +7,6 @@
 namespace Dr\StrategyBundle\Filter;
 
 
-use AppBundle\Exception\LockedException;
-
 class FilterParameter{
 
     const TYPE_INTEGER  = 'integer';
@@ -278,12 +276,12 @@ class FilterParameter{
     /**
      * @param bool $strict
      * @return bool
-     * @throws LockedException
+     * @throws \Exception
      */
     public function isReadOnly(bool $strict = false){
         if($this->readOnly){
             if($strict){
-                throw new LockedException('FilterParameter: instance is locked. Only the value can be set at this time');
+                throw new \Exception('FilterParameter: instance is locked. Only the value can be set at this time');
             }
 
             return true;
