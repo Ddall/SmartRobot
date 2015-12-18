@@ -19,7 +19,7 @@ class FilterParameterTest extends \PHPUnit_Framework_TestCase {
 
 
     /**
-     * @expectedException
+     * @expectedException \Exception
      */
     public function testLocked(){
         $fparam = $this->getEntity();
