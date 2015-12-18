@@ -7,6 +7,8 @@
 namespace Dr\StrategyBundle\Filter;
 
 
+use AppBundle\Exception\LockedException;
+
 class FilterParameter{
 
     const TYPE_INTEGER  = 'integer';
@@ -41,6 +43,18 @@ class FilterParameter{
     private $required;
 
     /**
+     * Array of choices as: array[VALUE] = 'LABEL'
+     * @var array
+     */
+    private $choices;
+
+    /**
+     * @var bool
+     */
+    private $readOnly;
+
+
+    /**
      * @return string
      */
     public function getType(){
@@ -53,12 +67,17 @@ class FilterParameter{
      * @throws \Exception
      */
     public function setType($type){
+        $this->isReadOnly(true);
+
         switch(strtolower($type)){
             case self::TYPE_INTEGER:
             case self::TYPE_FLOAT:
             case self::TYPE_BOOL:
-            case 'boolean':
                 $this->type = strtolower($type);
+                break;
+
+            case 'boolean':
+                $this->type = self::TYPE_BOOL;
                 break;
 
             default:
@@ -81,6 +100,8 @@ class FilterParameter{
      * @return $this
      */
     public function setComment($comment){
+        $this->isReadOnly(true);
+
         $this->comment = $comment;
 
         return $this;
@@ -103,21 +124,31 @@ class FilterParameter{
      * @throws \Exception
      */
     public function setValue($value){
-        if(!$this->getType()){
-            $this->setType( gettype($value) );
+
+        if($this->hasChoices()){
+            if(array_key_exists($value, $this->choices)){
+                $this->value = $value;
+
+            }else{
+                throw new \Exception('FilterParameter setValue value outside of possible choices');
+
+            }
+        }else{
+            $this->value = $value;
+
         }
 
-        $this->value = $value;
 
         return $this;
     }
-
 
     /**
      * @param $value mixed
      * @return $this
      */
     public function setDefault($value){
+        $this->isReadOnly(true);
+
         $this->default = $value;
         return $this;
     }
@@ -126,7 +157,7 @@ class FilterParameter{
      * @return mixed
      */
     public function getDefault(){
-        return $this->default();
+        return $this->default;
     }
 
     /**
@@ -134,6 +165,8 @@ class FilterParameter{
      * @return $this
      */
     public function setRequired($required){
+        $this->isReadOnly(true);
+
         if(!is_bool($required)){
             throw new \Exception('wrong type');
         }
@@ -176,9 +209,9 @@ class FilterParameter{
     /**
      * @return bool
      */
-    public function isValid(){
-        if($this->isRequired()){
-            if( $this->hasValue() || $this->hasDefault() ){
+    public function isValid() {
+        if ($this->isRequired()) {
+            if ($this->hasValue() || $this->hasDefault()) {
                 return true;
             }
 
@@ -188,5 +221,75 @@ class FilterParameter{
         return true;
     }
 
+
+    /**
+     * @param array $choices
+     * @return $this
+     */
+    public function setChoices(array $choices){
+        $this->isReadOnly(true);
+
+        $this->choices = $choices;
+
+        return $this;
+    }
+
+    /**
+     * @return array|bool
+     */
+    public function getChoices(){
+        if(is_array($this->choices)){
+            return $this->choices;
+        }
+
+        return false;
+    }
+
+
+    /**
+     * @return bool
+     */
+    public function hasChoices(){
+        if($this->getChoices() !== false ){
+            return true;
+        }else{
+            return false;
+        }
+    }
+
+    /**
+     * @param bool $readOnly
+     * @return $this
+     */
+    protected function setReadOnly(bool $readOnly){
+        $this->readOnly = $readOnly;
+
+        return $this;
+    }
+
+    /**
+     * @return $this
+     */
+    public function lock(){
+        $this->setReadOnly(true);
+        return $this;
+    }
+
+    /**
+     * @param bool $strict
+     * @return bool
+     * @throws LockedException
+     */
+    public function isReadOnly(bool $strict = false){
+        if($this->readOnly){
+            if($strict){
+                throw new LockedException('FilterParameter: instance is locked. Only the value can be set at this time');
+            }
+
+            return true;
+        }
+
+        return false;
+    }
 
 }
