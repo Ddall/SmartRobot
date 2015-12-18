@@ -7,6 +7,7 @@
 namespace Dr\StrategyBundle\Filter;
 
 
+use AppBundle\Exception\LockedException;
 use AppBundle\Exception\WrongTypeException;
 
 class FilterParameter{
@@ -258,8 +259,9 @@ class FilterParameter{
     }
 
     /**
-     * @param bool $readOnly
+     * @param $readOnly
      * @return $this
+     * @throws WrongTypeException
      */
     protected function setReadOnly($readOnly){
         if(!is_bool($readOnly)){
@@ -279,11 +281,11 @@ class FilterParameter{
         return $this;
     }
 
-
     /**
      * @param bool $strict
      * @return bool
-     * @throws \Exception
+     * @throws LockedException
+     * @throws WrongTypeException
      */
     public function isReadOnly($strict = false){
         if(!is_bool($strict)){
@@ -292,7 +294,7 @@ class FilterParameter{
 
         if($this->readOnly){
             if($strict){
-                throw new \Exception('FilterParameter: instance is locked. Only the value can be set at this time');
+                throw new LockedException('FilterParameter: instance is locked. Only the value can be set at this time');
             }
 
             return true;
