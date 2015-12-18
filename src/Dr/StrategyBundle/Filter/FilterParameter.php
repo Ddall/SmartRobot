@@ -7,6 +7,8 @@
 namespace Dr\StrategyBundle\Filter;
 
 
+use AppBundle\Exception\WrongTypeException;
+
 class FilterParameter{
 
     const TYPE_INTEGER  = 'integer';
@@ -259,7 +261,11 @@ class FilterParameter{
      * @param bool $readOnly
      * @return $this
      */
-    protected function setReadOnly(bool $readOnly){
+    protected function setReadOnly($readOnly){
+        if(!is_bool($readOnly)){
+            throw new WrongTypeException('FilterParameter setReadOnly expecting parameter of type bool');
+        }
+
         $this->readOnly = $readOnly;
 
         return $this;
@@ -273,12 +279,17 @@ class FilterParameter{
         return $this;
     }
 
+
     /**
      * @param bool $strict
      * @return bool
      * @throws \Exception
      */
-    public function isReadOnly(bool $strict = false){
+    public function isReadOnly($strict = false){
+        if(!is_bool($strict)){
+            throw new WrongTypeException('FilterParameter isReadOnly expecting parameter of type bool');
+        }
+
         if($this->readOnly){
             if($strict){
                 throw new \Exception('FilterParameter: instance is locked. Only the value can be set at this time');
