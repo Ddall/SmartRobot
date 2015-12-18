@@ -37,7 +37,18 @@ class TraderMAFilter extends AbstractFilter{
         $mAType
             ->setType('integer')
             ->setComment('Type of Moving Average. TRADER_MA_TYPE_* series of constants should be used. see: http://php.net/manual/en/trader.constants.php')
-            ->setDefault(TRADER_MA_TYPE_SMA);
+            ->setDefault(TRADER_MA_TYPE_SMA)
+            ->setChoices(array(
+                TRADER_MA_TYPE_SMA => 'Trader SMA',
+                TRADER_MA_TYPE_EMA => 'Trader EMA',
+                TRADER_MA_TYPE_WMA => 'Trader WMA',
+                TRADER_MA_TYPE_DEMA => 'Trader DEMA',
+                TRADER_MA_TYPE_TEMA => 'Trader TEMA',
+                TRADER_MA_TYPE_TRIMA => 'Trader TRIMA',
+                TRADER_MA_TYPE_KAMA => 'Trader KAMA',
+                TRADER_MA_TYPE_MAMA => 'Trader MAMA',
+                TRADER_MA_TYPE_T3 => 'Trader T3',
+            ))
         ;
 
         return array(
