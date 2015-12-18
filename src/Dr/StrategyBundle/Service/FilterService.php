@@ -32,10 +32,4 @@ class FilterService extends AbstractDdxDrService{
         return $this->filters;
     }
 
-    public function getFiltersType(){
-
-    }
-
-
-
 }

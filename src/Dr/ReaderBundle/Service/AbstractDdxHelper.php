@@ -11,6 +11,7 @@ use Dr\MarketBundle\Service\TradeService;
 use Dr\MarketBundle\Service\TradingPairService;
 use Dr\ReaderBundle\Service\KrakenMarketService;
 use Dr\StrategyBundle\Service\ComputeService;
+use Dr\StrategyBundle\Service\FilterService;
 
 abstract class AbstractDdxHelper{
 
@@ -38,10 +39,15 @@ abstract class AbstractDdxHelper{
      * @var ComputeService
      */
     protected $computeService;
+
+    /**
+     * @var FilterService
+     */
+    protected $filterService;
     
     /**
      * @param EntityManagerInterface $entityManager
-     * @return \Dr\ReaderBundle\Service\AbstractDdxDrService
+     * @return AbstractDdxDrService
      */
     protected function setEntityManager($entityManager){
         $this->entityManager = $entityManager;
@@ -68,7 +74,7 @@ abstract class AbstractDdxHelper{
 
     /**
      * @param TradeService $tradeService
-     * @return \Dr\ReaderBundle\Service\AbstractDdxDrService
+     * @return AbstractDdxDrService
      */
     protected function setTradeService(TradeService $tradeService){
         $this->tradeService = $tradeService;
@@ -86,7 +92,7 @@ abstract class AbstractDdxHelper{
     
     /**
      * @param TradingPairService $tradingPairService
-     * @return \Dr\ReaderBundle\Service\AbstractDdxDrService
+     * @return AbstractDdxDrService
      */
     protected function setTradingPairService(TradingPairService $tradingPairService){
         $this->tradingPairService = $tradingPairService;
@@ -104,7 +110,7 @@ abstract class AbstractDdxHelper{
     
     /**
      * @param KrakenMarketService $krakenMarketService
-     * @return \Dr\ReaderBundle\Service\AbstractDdxDrService
+     * @return AbstractDdxDrService
      */
     protected function setKrakenMarketService(KrakenMarketService $krakenMarketService){
         $this->krakenMarketService = $krakenMarketService;
@@ -132,6 +138,23 @@ abstract class AbstractDdxHelper{
      */
     public function getComputeService(){
         return $this->computeService;
+    }
+
+    /**
+     * @param FilterService $filterService
+     * @return $this
+     */
+    public function setFilterService(FilterService $filterService){
+        $this->filterService = $filterService;
+
+        return $this;
+    }
+
+    /**
+     * @return FilterService
+     */
+    public function getFilterService(){
+        return $this->filterService;
     }
     
 }

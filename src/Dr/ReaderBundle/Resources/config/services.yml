@@ -20,3 +20,4 @@ services:
             tradeService: "@dr.trade"
             tradingPairService: "@dr.tradingpair"
             krakenMarketService: "@dr.kraken"
+            filterService: "@dr.filters"
