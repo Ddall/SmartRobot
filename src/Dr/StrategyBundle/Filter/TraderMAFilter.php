@@ -19,7 +19,7 @@ class TraderMAFilter extends AbstractFilter{
      * @return string
      */
     public function getName() {
-        return 'TraderMA';
+        return 'Trader MA';
     }
 
     /**
@@ -31,6 +31,7 @@ class TraderMAFilter extends AbstractFilter{
         $timePeriod
             ->setType('integer')
             ->setComment('Number of period. Valid range from 2 to 100000.')
+            ->setRequired(true)
         ;
 
         $mAType = new FilterParameter();
