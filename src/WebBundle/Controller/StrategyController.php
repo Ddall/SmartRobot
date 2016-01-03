@@ -9,6 +9,7 @@ namespace WebBundle\Controller;
 
 use Dr\ReaderBundle\Service\BaseHelper;
 use Dr\StrategyBundle\Entity\Strategy;
+use Dr\StrategyBundle\Form\Type\IndicatorSelectForm;
 use Dr\StrategyBundle\Form\Type\StrategyType;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
@@ -35,14 +36,7 @@ class StrategyController extends Controller {
      * @throws \Exception
      */
     public function showAction(Request $request, $strategy_id){
-
-        $strategy = $this->getHelper()->getStrategiesRepository()->findOneBy(array(
-            'id' => $strategy_id,
-        ));
-
-        if(false === $strategy instanceof Strategy){
-            throw new \Exception('invalid strategy id');
-        }
+        $strategy = $this->getStrategyEntity($strategy_id);
 
         return $this->render('WebBundle:Strategy:show.html.twig', array(
             'strategy' => $strategy,
@@ -78,13 +72,7 @@ class StrategyController extends Controller {
      * @return \Symfony\Component\HttpFoundation\Response
      */
     public function editAction(Request $request, $strategy_id){
-        $strategy = $this->getHelper()->getStrategiesRepository()->findOneBy(array(
-            'id' => $strategy_id,
-        ));
-
-        if(false === $strategy instanceof Strategy){
-            throw new \Exception('strategy not found');
-        }
+        $strategy = $this->getStrategyEntity($strategy_id);
 
         $formStrategy = $this->createForm(new StrategyType(),$strategy);
         $formStrategy->handleRequest($request);
@@ -111,9 +99,32 @@ class StrategyController extends Controller {
      * @return \Symfony\Component\HttpFoundation\Response
      */
     public function addIndicatorAction(Request $request, $strategy_id){
-        return $this->render('Web:Strategy:addIndicator.html.twig', array(
+        $strategy = $this->getStrategyEntity($strategy_id);
 
+        $toto = new IndicatorSelectForm( $this->getHelper()->getFilterService() );
+        $indicatorSelectForm = $this->createForm( $toto);
+
+        return $this->render('WebBundle:Strategy:addIndicator.html.twig', array(
+            'strategy' => $strategy,
+            'indicatorSelectForm' => $indicatorSelectForm->createView(),
         ));
+    }
+
+    /**
+     * @param $strategy_id
+     * @return object
+     * @throws \Exception
+     */
+    protected function getStrategyEntity($strategy_id){
+        $strategy = $this->getHelper()->getStrategiesRepository()->findOneBy(array(
+            'id' => $strategy_id,
+        ));
+
+        if(false === $strategy instanceof Strategy){
+            throw new \Exception('Strategy not found');
+        }
+
+        return $strategy;
     }
 
     /**

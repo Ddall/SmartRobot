@@ -26,7 +26,6 @@ abstract class AbstractFilter implements FilterInterface{
         return $indicator;
     }
 
-
     /**
      * Use this method to check if an array of parameters is valid
      * @param array $parameters

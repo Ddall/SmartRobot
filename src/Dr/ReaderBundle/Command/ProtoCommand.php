@@ -29,28 +29,15 @@ class ProtoCommand extends ContainerAwareCommand {
      * @param OutputInterface $output
      */
     public function execute(InputInterface $input, OutputInterface $output) {
+        $filters = $this->getContainer()->get('dr.filters');
 
-        /**
-         * @var BaseHelper
-         */
-        $base = $this->getContainer()->get('dr.helper');
+        $out = '';
 
-        if($base instanceof BaseHelper){
-            $pair = $base->getTradingPairRepository()->find(23);
-
-            if($pair instanceof TradingPair){
-                $output->write('isStale: ');
-                if( $pair->isStale() ){
-                    $output->writeln('true');
-                }else{
-                    $output->writeln('false');
-
-                }
-
-                $output->writeln('delay ' . $pair->getLastRefreshInterval()->s . ' toto' );
-            }
-
+        foreach($filters->getFilters() as $filter){
+            $out .= get_class($filter) .PHP_EOL;
         }
 
+        $output->writeln($out);
     }
+
 }

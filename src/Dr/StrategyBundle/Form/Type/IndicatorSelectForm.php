@@ -6,11 +6,21 @@
 
 namespace Dr\StrategyBundle\Form\Type;
 
+use Dr\StrategyBundle\Service\FilterService;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\FormBuilderInterface;
 
 class IndicatorSelectForm extends AbstractType{
+
+    /**
+     * @var FilterService
+     */
+    private $filterService;
+
+    public function __construct(FilterService $filterService) {
+        $this->filterService = $filterService;
+    }
 
     /**
      * @param FormBuilderInterface $builder
@@ -20,7 +30,14 @@ class IndicatorSelectForm extends AbstractType{
         $builder
             ->add('filter', ChoiceType::class, array(
                 'required' => true,
+                'choices' => $this->filterService->getFiltersList()
             ))
+            ->add('submit', 'submit', array(
+                'attr' => array(
+                    'class' => 'save'
+                )
+            ))
+
         ;
     }
 

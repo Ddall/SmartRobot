@@ -3,4 +3,4 @@ services:
         class: Dr\StrategyBundle\Service\FilterService
         arguments:
             filters:
-                - Dr\StrategyBundle\Filters\TradeMAFilter
+                - "Dr\StrategyBundle\Filter\TraderMAFilter"

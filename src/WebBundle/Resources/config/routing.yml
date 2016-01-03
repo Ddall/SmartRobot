@@ -73,6 +73,12 @@ dr_strategy_edit:
     requirements:
       strategy_id: \d+
 
+dr_strategy_add_indicator:
+    path: /strategies/{strategy_id}/indicator/add
+    defaults: { _controller: WebBundle:Strategy:addIndicator }
+    requirements:
+      strategy_id: \d+
+
 
 # Profile
 avanzu_admin_profile:
