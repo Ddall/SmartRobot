@@ -4,3 +4,4 @@ services:
         arguments:
             filters:
                 - "Dr\StrategyBundle\Filter\TraderMAFilter"
+            formFactory: "@form.factory"

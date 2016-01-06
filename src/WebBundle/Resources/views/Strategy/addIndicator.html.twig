@@ -10,5 +10,10 @@
         <div class="row">
             {{ form(indicatorSelectForm) }}
         </div>
+        <div class="row">
+            {% if filterFormView is not null %}
+                {{ form(filterFormView) }}
+            {% endif %}
+        </div>
     </div>
 {% endblock %}

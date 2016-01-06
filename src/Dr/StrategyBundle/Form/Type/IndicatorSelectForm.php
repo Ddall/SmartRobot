@@ -29,6 +29,7 @@ class IndicatorSelectForm extends AbstractType{
     public function buildForm(FormBuilderInterface $builder, array $options) {
         $builder
             ->add('filter', ChoiceType::class, array(
+                'label' => 'Choose a filter',
                 'required' => true,
                 'choices' => $this->filterService->getFiltersList()
             ))

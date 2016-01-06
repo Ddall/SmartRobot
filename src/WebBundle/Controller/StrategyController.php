@@ -7,8 +7,10 @@
 namespace WebBundle\Controller;
 
 
+use AppBundle\Exception\NotFoundException;
 use Dr\ReaderBundle\Service\BaseHelper;
 use Dr\StrategyBundle\Entity\Strategy;
+use Dr\StrategyBundle\Filter\FilterInterface;
 use Dr\StrategyBundle\Form\Type\IndicatorSelectForm;
 use Dr\StrategyBundle\Form\Type\StrategyType;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
@@ -100,13 +102,34 @@ class StrategyController extends Controller {
      */
     public function addIndicatorAction(Request $request, $strategy_id){
         $strategy = $this->getStrategyEntity($strategy_id);
+        $filterFormView = null;
 
-        $toto = new IndicatorSelectForm( $this->getHelper()->getFilterService() );
-        $indicatorSelectForm = $this->createForm( $toto);
+        $indicatorSelectForm = $this->createForm( new IndicatorSelectForm( $this->getHelper()->getFilterService() ));
+        $indicatorSelectForm->handleRequest($request);
+
+        if($indicatorSelectForm->isSubmitted() && $indicatorSelectForm->isValid()){
+
+            $data = $indicatorSelectForm->getData();
+            $indicator_id = $data['filter'];
+
+            $filter = $this->getHelper()->getFilterService()->get($indicator_id);
+
+            if($filter instanceof FilterInterface){
+                $filterForm = $this->getHelper()->getFilterService()->createFormById($indicator_id);
+                $filterFormView = $filterForm->createView();
+
+
+            }else{
+                throw new NotFoundException('Filter not found');
+            }
+
+
+        }
 
         return $this->render('WebBundle:Strategy:addIndicator.html.twig', array(
             'strategy' => $strategy,
             'indicatorSelectForm' => $indicatorSelectForm->createView(),
+            'filterFormView' => $filterFormView,
         ));
     }
 

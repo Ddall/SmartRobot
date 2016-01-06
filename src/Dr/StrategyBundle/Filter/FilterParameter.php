@@ -19,6 +19,11 @@ class FilterParameter{
     /**
      * @var string
      */
+    private  $label;
+
+    /**
+     * @var string
+     */
     private $type;
 
     /**
@@ -54,6 +59,34 @@ class FilterParameter{
      */
     private $readOnly;
 
+
+    /**
+     * @param $label
+     * @return $this
+     */
+    public function setLabel($label) {
+        $this->label = $label;
+
+        return $this;
+    }
+
+    /**
+     * @return bool
+     */
+    public function hasLabel(){
+        if(is_string($this->label) && $this->label != ''){
+            return true;
+        }else{
+            return false;
+        }
+    }
+
+    /**
+     * @return string
+     */
+    public function getLabel(){
+        return $this->label;
+    }
 
     /**
      * @return string
