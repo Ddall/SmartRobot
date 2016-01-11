@@ -9,6 +9,7 @@ namespace WebBundle\Controller;
 
 use AppBundle\Exception\NotFoundException;
 use Dr\ReaderBundle\Service\BaseHelper;
+use Dr\StrategyBundle\Entity\Indicator;
 use Dr\StrategyBundle\Entity\Strategy;
 use Dr\StrategyBundle\Filter\FilterInterface;
 use Dr\StrategyBundle\Form\Type\IndicatorSelectForm;
@@ -71,6 +72,22 @@ class StrategyController extends Controller {
     /**
      * @param Request $request
      * @param         $strategy_id
+     * @return \Symfony\Component\HttpFoundation\RedirectResponse
+     * @throws \Exception
+     */
+    public function removeAction(Request $request, $strategy_id){
+        $strategy = $this->getStrategyEntity($strategy_id);
+
+        $em = $this->getHelper()->getEntityManager();
+        $em->remove($strategy);
+        $em->flush();
+
+        return $this->redirectToRoute('dr_strategy_list');
+    }
+
+    /**
+     * @param Request $request
+     * @param         $strategy_id
      * @return \Symfony\Component\HttpFoundation\Response
      */
     public function editAction(Request $request, $strategy_id){
@@ -103,6 +120,7 @@ class StrategyController extends Controller {
     public function addIndicatorAction(Request $request, $strategy_id){
         $strategy = $this->getStrategyEntity($strategy_id);
         $filterFormView = null;
+        $selectedFilter = null;
 
         $indicatorSelectForm = $this->createForm( new IndicatorSelectForm( $this->getHelper()->getFilterService() ));
         $indicatorSelectForm->handleRequest($request);
@@ -110,19 +128,32 @@ class StrategyController extends Controller {
         if($indicatorSelectForm->isSubmitted() && $indicatorSelectForm->isValid()){
 
             $data = $indicatorSelectForm->getData();
-            $indicator_id = $data['filter'];
+            $filter_id = $data['filter'];
 
-            $filter = $this->getHelper()->getFilterService()->get($indicator_id);
+            $filter = $this->getHelper()->getFilterService()->get($filter_id);
+            $selectedFilter = $filter->getName();
 
             if($filter instanceof FilterInterface){
-                $filterForm = $this->getHelper()->getFilterService()->createFormById($indicator_id);
+                $filterForm = $this->getHelper()->getFilterService()->createFormById($filter_id);
                 $filterFormView = $filterForm->createView();
-
-
             }else{
                 throw new NotFoundException('Filter not found');
             }
+        }elseif($request->isMethod('post')){
+            $data = $request->request->get('form');
+            if(array_key_exists('filter_id', $data) && !empty($data['filter_id']) ){
 
+                $filterForm = $this->getHelper()->getFilterService()->createFormById($data['filter_id']);
+                $filterForm->handleRequest($request);
+                if($filterForm->isSubmitted() && $filterForm->isValid() ){
+                    // Create new indicator
+                    $indicator = new Indicator();
+                    $indicator->setName();
+
+
+                }
+
+            }
 
         }
 
@@ -130,6 +161,7 @@ class StrategyController extends Controller {
             'strategy' => $strategy,
             'indicatorSelectForm' => $indicatorSelectForm->createView(),
             'filterFormView' => $filterFormView,
+            'selectedFilter' => $selectedFilter,
         ));
     }
 
@@ -138,12 +170,12 @@ class StrategyController extends Controller {
      * @return object
      * @throws \Exception
      */
-    protected function getStrategyEntity($strategy_id){
+    protected function getStrategyEntity($strategy_id, $strict = true){
         $strategy = $this->getHelper()->getStrategiesRepository()->findOneBy(array(
             'id' => $strategy_id,
         ));
 
-        if(false === $strategy instanceof Strategy){
+        if($strict && false === $strategy instanceof Strategy){
             throw new \Exception('Strategy not found');
         }
 

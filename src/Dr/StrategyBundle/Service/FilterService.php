@@ -14,6 +14,7 @@ use Dr\StrategyBundle\Filter\AbstractFilter;
 use Dr\StrategyBundle\Filter\FilterInterface;
 use Dr\StrategyBundle\Filter\FilterParameter;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
+use Symfony\Component\Form\Extension\Core\Type\HiddenType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\FormBuilder;
 use Symfony\Component\Form\FormFactory;
@@ -176,9 +177,14 @@ class FilterService extends AbstractDdxDrService{
             $form->add($key, $type, $formParameters);
         }
 
-        $form->add('submit', SubmitType::class, array(
-           'label' => 'Create',
-        ));
+        $form
+            ->add('filter_id', HiddenType::class, array(
+                'data' => $filter_id,
+            ))
+            ->add('submit', SubmitType::class, array(
+               'label' => 'Create',
+            ))
+        ;
 
         return $form->getForm();
     }

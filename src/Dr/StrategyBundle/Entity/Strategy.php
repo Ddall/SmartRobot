@@ -46,7 +46,7 @@ class Strategy
     /**
      * @var Indicator
      *
-     * @ORM\OneToMany(targetEntity="Dr\StrategyBundle\Entity\Indicator", mappedBy="strategy")
+     * @ORM\OneToMany(targetEntity="Dr\StrategyBundle\Entity\Indicator", mappedBy="strategy", orphanRemoval=true)
      */
     private $indicators;
 

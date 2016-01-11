@@ -1,18 +1,28 @@
 {% extends "::base.html.twig" %}
 {% block title %}Ddx SmartRobot{% endblock %}
 {% block page_title %}
-    Strategy - {{ strategy.name|default('Unnamed strategy #'+ strategy.id) }}
-    <a href="{{ path('dr_strategy_edit', {'strategy_id': strategy.id }) }}" class="btn btn-primary"><i class="fa fa-cog"></i> Edit</a>
+    Add a new indicator to <i>{{ strategy.name|default('Unnamed strategy #'+ strategy.id) }}</i>
+    <a href="{{ path('dr_strategy_show', {'strategy_id': strategy.id }) }}" class="btn btn-primary"><i class="fa fa-chevron-left"></i> Back</a>
 {% endblock %}
 {% block page_subtitle %}{% endblock %}
 {% block page_content %}
     <div class="container-fluid">
+
         <div class="row">
-            {{ form(indicatorSelectForm) }}
-        </div>
-        <div class="row">
-            {% if filterFormView is not null %}
-                {{ form(filterFormView) }}
+            {% if filterFormView is null %}
+
+                {{ form(indicatorSelectForm) }}
+            {% elseif filterFormView is not null %}
+
+                <div class="box box-success">
+                    <div class="box-header">
+                        <h3>Parameters for: {{ selectedFilter|default('UNNAMED') }} </h3>
+                    </div>
+                    <div class="box-body">
+                        {{ form(filterFormView) }}
+                    </div>
+                </div>
+
             {% endif %}
         </div>
     </div>

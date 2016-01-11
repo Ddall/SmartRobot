@@ -15,7 +15,7 @@
                             {% if not strategy.isActive %}
                                 <span class="label label-warning">Disabled</span>
                             {% endif %}
-                            <a href="#"><i class="fa fa-cog"></i></a>
+                            <a class="confirmation" href="{{ path('dr_strategy_remove', {'strategy_id': strategy.id } ) }}"><i class="fa fa-cog"></i></a>
                         </div>
                     </div>
                     <div class="box-body">
@@ -34,4 +34,16 @@
         {% endif %}
     </div>
 </div>
+{% endblock %}
+{% block javascripts %}
+{{ parent() }}
+<script type="text/javascript">
+    var elems = document.getElementsByClassName('confirmation');
+    var confirmIt = function (e) {
+        if (!confirm('Are you sure?')) e.preventDefault();
+    };
+    for (var i = 0, l = elems.length; i < l; i++) {
+        elems[i].addEventListener('click', confirmIt, false);
+    }
+</script>
 {% endblock %}

@@ -3,6 +3,8 @@
 namespace Dr\StrategyBundle\Form\Type;
 
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\TextareaType;
+use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 
@@ -15,16 +17,26 @@ class IndicatorType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('name', 'text', array(
+            ->add('name', TextType::class, array(
+                'label' => 'Name',
+                'label_attr' => 'Name for the new indicator',
                 'required' => true,
                 'attr' => array(
                     'placeholder' => 'Name',
                 )
             ))
-            ->add('filter')
-            ->add('parameters')
-            ->add('comments')
-            ->add('strategy')
+            ->add('comments', TextareaType::class, array(
+                'label' => 'Comments',
+                'required' => false,
+                'attr' => array(
+                    'placeholder' => 'Comments ...'
+                )
+            ))
+            ->add('submit', 'submit', array(
+                'attr' => array(
+                    'class' => 'save',
+                )
+            ))
         ;
     }
     
