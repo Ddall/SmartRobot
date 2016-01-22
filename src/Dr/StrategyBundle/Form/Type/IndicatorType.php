@@ -32,11 +32,15 @@ class IndicatorType extends AbstractType
                     'placeholder' => 'Comments ...'
                 )
             ))
+            ->add('filter', new FormBuilder(), array(
+
+            ))
             ->add('submit', 'submit', array(
                 'attr' => array(
                     'class' => 'save',
                 )
             ))
+
         ;
     }
     
