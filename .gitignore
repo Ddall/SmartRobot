@@ -11,8 +11,6 @@
 /bin/
 /composer.lock
 /composer.phar
-/nbproject
 /web/.htaccess
-.idea/
 .vagrant
 vagrant_ansible_inventory_default

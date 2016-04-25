@@ -4,7 +4,7 @@
     "type": "project",
     "description": "Second attempt at a slightly less dumb algorithmic trading bot",
     "autoload": {
-        "psr-4": { "": "src/" }
+        "psr-4": { "ddx": "src/" }
     },
     "require": {
         "php": ">=5.3.9",

@@ -5,6 +5,7 @@ namespace Dr\StrategyBundle\Form\Type;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
+use Symfony\Component\Form\FormBuilder;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 
@@ -32,7 +33,7 @@ class IndicatorType extends AbstractType
                     'placeholder' => 'Comments ...'
                 )
             ))
-            ->add('filter', new FormBuilder(), array(
+            ->add('filter', FormBuilder::class, array(
 
             ))
             ->add('submit', 'submit', array(
