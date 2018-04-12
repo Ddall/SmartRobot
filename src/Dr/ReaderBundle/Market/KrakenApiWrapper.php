@@ -181,7 +181,7 @@ class KrakenApiWrapper extends AbstractMarket{
      * Exceeding this threshold WILL result in a 15min ban from the api
      * @return string
      */
-    static function getApiMaxScore(){
+    public static function getApiMaxScore(){
         return '10';
     }
     

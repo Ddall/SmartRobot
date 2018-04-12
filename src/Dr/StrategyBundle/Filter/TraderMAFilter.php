@@ -18,14 +18,14 @@ class TraderMAFilter extends AbstractFilter{
      * @inheritdoc
      * @return string
      */
-    static function getName() {
+    public static function getName() {
         return 'Trader MA';
     }
 
     /**
      * @inheritdoc
      */
-    static function getIdentifier() {
+    public static function getIdentifier() {
         return 'php_trader_ma';
     }
 

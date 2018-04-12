@@ -7,20 +7,21 @@
         "psr-4": { "Dr\\": "src/" }
     },
     "require": {
-        "php": ">=5.3.9",
-        "symfony/symfony": "^2.8.6",
-        "doctrine/orm": "^2.4.8",
-        "doctrine/doctrine-bundle": "~1.4",
-        "doctrine/doctrine-fixtures-bundle": "2.2.*",
-        "symfony/assetic-bundle": "~2.3",
-        "symfony/swiftmailer-bundle": "~2.3",
+        "php": "^7.1",
+        "doctrine/doctrine-bundle": "^1.6",
+        "doctrine/orm": "^2.5",
+        "doctrine/doctrine-fixtures-bundle": "^3.0",
+        "symfony/assetic-bundle": "^2.8",
         "symfony/monolog-bundle": "~2.4",
         "sensio/distribution-bundle": "~4.0",
+        "symfony/swiftmailer-bundle": "^2.6.4",
+        "symfony/symfony": "3.4.*",
+        "symfony/templating": "^4.0",
         "sensio/framework-extra-bundle": "^3.0.2",
         "incenteev/composer-parameter-handler": "~2.0",
         "friendsofsymfony/user-bundle": "~1.3",
         "avanzu/admin-theme-bundle": "~1.3",
-        "payward/kraken-api-client": "dev-master#00feabae940414ec293580cb8aa4ef3a22c502b4",
+        "payward/kraken-api-client": "dev-master",
         "ob/highcharts-bundle": "~1.3"
     },
     "require-dev": {
@@ -46,17 +47,18 @@
         ]
     },
     "config": {
-        "bin-dir": "bin"
+        "sort-packages": true,
     },
     "extra": {
         "symfony-app-dir": "app",
+        "symfony-bin-dir": "bin",
+        "symfony-var-dir": "var",
         "symfony-web-dir": "web",
+        "symfony-tests-dir": "tests",
         "symfony-assets-install": "relative",
+
         "incenteev-parameters": {
             "file": "app/config/parameters.yml"
-        },
-        "branch-alias": {
-            "dev-master": "2.8-dev"
         }
     }
 }

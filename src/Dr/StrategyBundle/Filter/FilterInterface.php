@@ -19,13 +19,13 @@ interface FilterInterface{
      * Return the display name of a filter, don't use this to find a filter, use getIdentifier instead
      * @return string
      */
-    static function getName();
+    public static function getName();
 
     /**
      * Returns the identifier of a filter
      * @return string
      */
-    static function getIdentifier();
+    public static function getIdentifier();
 
     /**
      * Returns an array of FilterParameter that represent parameters used by the filter
